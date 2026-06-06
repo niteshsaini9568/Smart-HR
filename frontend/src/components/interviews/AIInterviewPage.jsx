@@ -28,6 +28,7 @@ import {
 import interviewService, { uploadInterviewRecording, uploadInterviewRecordingByLink } from '../../services/interviewService';
 import recordingService from '../../services/recordingService';
 import eyeTrackingService from '../../services/eyeTrackingService';
+import API_BASE_URL from '../../config/api';
 
 export default function AIInterviewPage() {
   const { link } = useParams();
@@ -589,7 +590,7 @@ export default function AIInterviewPage() {
       console.log(`🗣️ Requesting HuggingFace Whisper TTS for: "${text.substring(0, 50)}..." (isGreeting: ${isGreeting})`);
 
       // Call backend API to get audio from HuggingFace
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/tts/speak`, {
+      const response = await fetch(`${API_BASE_URL}/tts/speak`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import API_BASE_URL from '../../config/api';
 
 export default function ProfileDialog({ isOpen, onClose }) {
   const { user, updateUserDetails, refreshUser, updateAvatar } = useAuth();
@@ -117,7 +118,7 @@ export default function ProfileDialog({ isOpen, onClose }) {
 
         // Upload with FormData
         const token = localStorage.getItem('token');
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/updatedetails`, {
+        const response = await fetch(`${API_BASE_URL}/auth/updatedetails`, {
           method: 'PUT',
           headers: {
             Authorization: `Bearer ${token}`,

@@ -1,5 +1,8 @@
-// API configuration
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1';
+// API configuration — set VITE_API_BASE_URL in Vercel to your Render backend URL
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  import.meta.env.VITE_API_URL ||
+  'http://localhost:5000/api/v1';
 
 export const API_ENDPOINTS = {
   // Auth endpoints

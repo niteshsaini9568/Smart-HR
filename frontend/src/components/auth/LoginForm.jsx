@@ -10,8 +10,7 @@ import { useAuth } from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 
 import authService from '../../services/authService';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+import API_BASE_URL from '../../config/api';
 
 export default function LoginForm({ onSuccess, expectedRole }) {
   const { login, logout, isLoading, error, clearError } = useAuth();
@@ -182,7 +181,7 @@ export default function LoginForm({ onSuccess, expectedRole }) {
     }
 
     // Redirect to OAuth provider with expectedRole parameter
-    let oauthUrl = `${API_URL}/auth/${provider}`;
+    let oauthUrl = `${API_BASE_URL}/auth/${provider}`;
     if (expectedRole) {
       oauthUrl += `?expectedRole=${encodeURIComponent(expectedRole)}`;
     }

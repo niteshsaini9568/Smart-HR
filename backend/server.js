@@ -9,6 +9,7 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const path = require('path');
+const fs = require('fs');
 const fileupload = require('express-fileupload');
 const session = require('express-session');
 
@@ -38,6 +39,18 @@ const { initAIModel } = require('./services/aiService');
 initAIModel().catch(console.error);
 
 const app = express();
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Render runs behind a reverse proxy
+app.set('trust proxy', 1);
+
+// Ensure local upload directories exist (ephemeral on Render, prefer Cloudinary in production)
+['uploads', 'uploads/resumes'].forEach((dir) => {
+  const dirPath = path.join(__dirname, dir);
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+});
 
 // Body parser with increased limits for large payloads (recordings, base64, etc.)
 app.use(express.json({ limit: '200mb' }));
@@ -53,7 +66,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: false, // set true when behind HTTPS/proxy
+    secure: isProduction,
     maxAge: 1000 * 60 * 60 * 24 // 1 day
   }
 }));
@@ -93,7 +106,8 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://127.0.0.1:5173',
   'http://0.0.0.0:5173',
-  process.env.CORS_ORIGIN
+  process.env.FRONTEND_URL,
+  ...(process.env.CORS_ORIGIN?.split(',').map((origin) => origin.trim()) || [])
 ].filter(Boolean);
 
 app.use(cors({

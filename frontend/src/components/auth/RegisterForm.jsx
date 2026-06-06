@@ -6,8 +6,7 @@ import { Alert, AlertDescription } from '../ui/alert';
 import { Loader2, AlertCircle, Linkedin } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+import API_BASE_URL from '../../config/api';
 
 export default function RegisterForm({ onSuccess, expectedRole }) {
   const { register, isLoading, error, clearError } = useAuth();
@@ -101,7 +100,7 @@ export default function RegisterForm({ onSuccess, expectedRole }) {
               variant="outline"
               className="w-full flex items-center justify-center gap-2 border rounded-lg bg-white py-2 text-base font-medium shadow-sm"
               onClick={() => { 
-                let oauthUrl = `${API_URL}/auth/google`;
+                let oauthUrl = `${API_BASE_URL}/auth/google`;
                 if (expectedRole) {
                   oauthUrl += `?expectedRole=${encodeURIComponent(expectedRole)}`;
                 }

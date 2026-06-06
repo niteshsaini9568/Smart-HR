@@ -3,6 +3,14 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 const User = require('../models/User');
 
+const backendUrl = (process.env.BACKEND_URL || '').replace(/\/$/, '');
+
+const resolveOAuthCallback = (providerPath, explicitUrl) => {
+  if (explicitUrl) return explicitUrl;
+  if (backendUrl) return `${backendUrl}${providerPath}`;
+  return providerPath;
+};
+
 // Serialize user to store in session
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -25,7 +33,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: process.env.GOOGLE_CALLBACK_URL || '/api/v1/auth/google/callback',
+        callbackURL: resolveOAuthCallback('/api/v1/auth/google/callback', process.env.GOOGLE_CALLBACK_URL),
         scope: ['profile', 'email'],
         passReqToCallback: true,
       },
@@ -82,7 +90,7 @@ if (process.env.LINKEDIN_CLIENT_ID && process.env.LINKEDIN_CLIENT_SECRET) {
       {
         clientID: process.env.LINKEDIN_CLIENT_ID,
         clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
-        callbackURL: process.env.LINKEDIN_CALLBACK_URL || '/api/v1/auth/linkedin/callback',
+        callbackURL: resolveOAuthCallback('/api/v1/auth/linkedin/callback', process.env.LINKEDIN_CALLBACK_URL),
         // Use LinkedIn's standard OAuth scopes to reliably fetch profile and email
         scope: ['r_liteprofile', 'r_emailaddress'],
         state: true,
