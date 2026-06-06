@@ -1081,16 +1081,16 @@ export default function HRManagerDashboard({ user }) {
                         stage.applications.map((app) => (
                           <div 
                             key={app.id} 
-                            className="bg-white p-3 rounded shadow-sm cursor-pointer hover:shadow-md transition-shadow"
+                            className="bg-card p-3 rounded shadow-sm cursor-pointer hover:shadow-md transition-shadow"
                             onClick={() => {
                               setSelectedApplicationId(app.id);
                               setIsApplicationDetailsOpen(true);
                             }}
                           >
                             <p className="text-sm font-medium mb-1">{app.name}</p>
-                            <p className="text-xs text-gray-500">{app.position}</p>
+                            <p className="text-xs text-muted-foreground">{app.position}</p>
                             <div className="mt-2 flex items-center gap-1">
-                              <div className="flex-1 bg-gray-200 rounded-full h-1">
+                              <div className="flex-1 bg-muted rounded-full h-1">
                                 <div 
                                   className="bg-purple-600 h-1 rounded-full" 
                                   style={{ width: `${app.score}%` }}
@@ -1101,8 +1101,8 @@ export default function HRManagerDashboard({ user }) {
                           </div>
                         ))
                       ) : (
-                        <div className="bg-white/50 p-3 rounded text-center">
-                          <p className="text-xs text-gray-500">No applications</p>
+                        <div className="bg-card/50 p-3 rounded text-center">
+                          <p className="text-xs text-muted-foreground">No applications</p>
                         </div>
                       )}
                     </div>
@@ -1153,7 +1153,7 @@ export default function HRManagerDashboard({ user }) {
                     };
 
                     return (
-                      <div key={app._id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-lg hover:bg-gray-50 gap-4">
+                      <div key={app._id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-lg hover:bg-muted/50 gap-4">
                         <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                           <img 
                             src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${candidateName}`} 
@@ -1162,7 +1162,7 @@ export default function HRManagerDashboard({ user }) {
                           />
                           <div className="min-w-0 flex-1">
                             <p className="font-medium text-sm sm:text-base truncate">{candidateName}</p>
-                            <p className="text-xs sm:text-sm text-gray-500 truncate">{jobTitle}</p>
+                            <p className="text-xs sm:text-sm text-muted-foreground truncate">{jobTitle}</p>
                           </div>
                         </div>
                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
@@ -1170,9 +1170,9 @@ export default function HRManagerDashboard({ user }) {
                             <Badge variant={statusBadgeMap[app.status]} className="text-xs whitespace-nowrap">
                               {statusLabelMap[app.status]}
                             </Badge>
-                            <p className="text-xs text-gray-500 sm:hidden">{appliedDate}</p>
+                            <p className="text-xs text-muted-foreground sm:hidden">{appliedDate}</p>
                           </div>
-                          <p className="text-xs text-gray-500 hidden sm:block">{appliedDate}</p>
+                          <p className="text-xs text-muted-foreground hidden sm:block">{appliedDate}</p>
                           <div className="flex items-center gap-2">
                             <div className="text-center">
                               <div className="text-purple-600 font-semibold text-sm sm:text-base mb-1">{score}</div>
@@ -1204,8 +1204,8 @@ export default function HRManagerDashboard({ user }) {
                     );
                   })
                 ) : (
-                  <div className="text-center py-8 text-gray-500">
-                    <FileText className="h-12 w-12 mx-auto mb-2 text-gray-400" />
+                  <div className="text-center py-8 text-muted-foreground">
+                    <FileText className="h-12 w-12 mx-auto mb-2 text-muted-foreground" />
                     <p>No recent applications</p>
                   </div>
                 )}
@@ -1219,8 +1219,8 @@ export default function HRManagerDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Applications</h1>
-              <p className="text-sm md:text-base text-gray-600">Manage all job applications</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Applications</h1>
+              <p className="text-sm md:text-base text-muted-foreground">Manage all job applications</p>
             </div>
           </div>
 
@@ -1229,7 +1229,7 @@ export default function HRManagerDashboard({ user }) {
             <CardContent className="p-4 md:p-6">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     placeholder="Search by candidate name, email, or job title..."
                     value={searchQuery}
@@ -1262,13 +1262,13 @@ export default function HRManagerDashboard({ user }) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             <Card>
               <CardContent className="p-4">
-                <div className="text-sm text-gray-600 mb-1">Total Applications</div>
-                <div className="text-2xl font-bold text-gray-900">{allApplications.length}</div>
+                <div className="text-sm text-muted-foreground mb-1">Total Applications</div>
+                <div className="text-2xl font-bold text-foreground">{allApplications.length}</div>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-4">
-                <div className="text-sm text-gray-600 mb-1">New</div>
+                <div className="text-sm text-muted-foreground mb-1">New</div>
                 <div className="text-2xl font-bold text-blue-600">
                   {allApplications.filter(a => a.status === 'submitted').length}
                 </div>
@@ -1276,7 +1276,7 @@ export default function HRManagerDashboard({ user }) {
             </Card>
             <Card>
               <CardContent className="p-4">
-                <div className="text-sm text-gray-600 mb-1">Under Review</div>
+                <div className="text-sm text-muted-foreground mb-1">Under Review</div>
                 <div className="text-2xl font-bold text-yellow-600">
                   {allApplications.filter(a => a.status === 'under_review').length}
                 </div>
@@ -1284,7 +1284,7 @@ export default function HRManagerDashboard({ user }) {
             </Card>
             <Card>
               <CardContent className="p-4">
-                <div className="text-sm text-gray-600 mb-1">Shortlisted</div>
+                <div className="text-sm text-muted-foreground mb-1">Shortlisted</div>
                 <div className="text-2xl font-bold text-green-600">
                   {allApplications.filter(a => a.status === 'shortlisted').length}
                 </div>
@@ -1343,14 +1343,14 @@ export default function HRManagerDashboard({ user }) {
                           />
                           <div className="flex-1 min-w-0">
                             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
-                              <h3 className="font-semibold text-base sm:text-lg text-gray-900 truncate">
+                              <h3 className="font-semibold text-base sm:text-lg text-foreground truncate">
                                 {candidateName}
                               </h3>
                               <Badge variant={statusBadgeMap[app.status]} className="text-xs sm:text-sm w-fit">
                                 {statusLabelMap[app.status]}
                               </Badge>
                             </div>
-                            <div className="grid grid-cols-1 gap-2 text-xs sm:text-sm text-gray-600">
+                            <div className="grid grid-cols-1 gap-2 text-xs sm:text-sm text-muted-foreground">
                               <div className="flex items-center gap-2">
                                 <Briefcase className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
                                 <span className="truncate">{jobTitle}</span>
@@ -1365,7 +1365,7 @@ export default function HRManagerDashboard({ user }) {
                               </div>
                             </div>
                             <div className="flex items-center gap-2 sm:gap-3 mt-2">
-                              <span className="text-xs sm:text-sm text-gray-600 flex-shrink-0">AI Match:</span>
+                              <span className="text-xs sm:text-sm text-muted-foreground flex-shrink-0">AI Match:</span>
                               <div className="flex items-center gap-2 flex-1">
                                 <Progress value={score} className="flex-1 max-w-[120px] sm:max-w-xs" />
                                 <span className="text-xs sm:text-sm font-semibold text-purple-600 flex-shrink-0">{score}%</span>
@@ -1433,8 +1433,8 @@ export default function HRManagerDashboard({ user }) {
             </div>
           ) : (
             <div className="text-center py-12 border-2 border-dashed rounded-lg">
-              <FileText className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-              <p className="text-gray-500">
+              <FileText className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+              <p className="text-muted-foreground">
                 {searchQuery || statusFilter !== 'all' 
                   ? 'No applications match your filters' 
                   : 'No applications yet'}
@@ -1447,7 +1447,7 @@ export default function HRManagerDashboard({ user }) {
             <Card>
               <CardContent className="p-4">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-muted-foreground">
                     Showing {getPaginatedApplications().length} of {filteredApplications.length} applications
                     {getTotalApplicationsPages() > 1 && (
                       <span> • Page {currentApplicationsPage} of {getTotalApplicationsPages()}</span>
@@ -1484,8 +1484,8 @@ export default function HRManagerDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Candidates</h1>
-              <p className="text-sm md:text-base text-gray-600">Manage all candidates and their applications</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Candidates</h1>
+              <p className="text-sm md:text-base text-muted-foreground">Manage all candidates and their applications</p>
             </div>
           </div>
 
@@ -1494,7 +1494,7 @@ export default function HRManagerDashboard({ user }) {
             <CardContent className="p-4 md:p-6">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     placeholder="Search by candidate name or email..."
                     value={candidateSearchQuery}
@@ -1524,13 +1524,13 @@ export default function HRManagerDashboard({ user }) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             <Card>
               <CardContent className="p-3 md:p-4">
-                <div className="text-xs sm:text-sm text-gray-600 mb-1">Total Candidates</div>
-                <div className="text-xl sm:text-2xl font-bold text-gray-900">{allCandidates.length}</div>
+                <div className="text-xs sm:text-sm text-muted-foreground mb-1">Total Candidates</div>
+                <div className="text-xl sm:text-2xl font-bold text-foreground">{allCandidates.length}</div>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-3 md:p-4">
-                <div className="text-xs sm:text-sm text-gray-600 mb-1">Active</div>
+                <div className="text-xs sm:text-sm text-muted-foreground mb-1">Active</div>
                 <div className="text-xl sm:text-2xl font-bold text-blue-600">
                   {allCandidates.filter(c => 
                     ['submitted', 'under_review', 'shortlisted', 'interview_scheduled', 'interviewed', 'offer_extended']
@@ -1541,7 +1541,7 @@ export default function HRManagerDashboard({ user }) {
             </Card>
             <Card>
               <CardContent className="p-3 md:p-4">
-                <div className="text-xs sm:text-sm text-gray-600 mb-1">Hired</div>
+                <div className="text-xs sm:text-sm text-muted-foreground mb-1">Hired</div>
                 <div className="text-xl sm:text-2xl font-bold text-green-600">
                   {allCandidates.filter(c => c.latestStatus === 'accepted').length}
                 </div>
@@ -1549,7 +1549,7 @@ export default function HRManagerDashboard({ user }) {
             </Card>
             <Card>
               <CardContent className="p-3 md:p-4">
-                <div className="text-xs sm:text-sm text-gray-600 mb-1">Avg Applications</div>
+                <div className="text-xs sm:text-sm text-muted-foreground mb-1">Avg Applications</div>
                 <div className="text-xl sm:text-2xl font-bold text-purple-600">
                   {allCandidates.length > 0 
                     ? (allCandidates.reduce((sum, c) => sum + c.totalApplications, 0) / allCandidates.length).toFixed(1)
@@ -1604,14 +1604,14 @@ export default function HRManagerDashboard({ user }) {
                           />
                           <div className="flex-1 min-w-0">
                             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
-                              <h3 className="font-semibold text-base sm:text-xl text-gray-900 truncate">
+                              <h3 className="font-semibold text-base sm:text-xl text-foreground truncate">
                                 {candidateName}
                               </h3>
                               <Badge variant={latestStatusBadgeMap[candidate.latestStatus]} className="text-xs sm:text-sm w-fit">
                                 {latestStatusLabelMap[candidate.latestStatus]}
                               </Badge>
                             </div>
-                            <div className="grid grid-cols-1 gap-2 text-xs sm:text-sm text-gray-600 mb-2">
+                            <div className="grid grid-cols-1 gap-2 text-xs sm:text-sm text-muted-foreground mb-2">
                               <div className="flex items-center gap-2">
                                 <Mail className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
                                 <span className="truncate">{candidate.email}</span>
@@ -1629,7 +1629,7 @@ export default function HRManagerDashboard({ user }) {
                             </div>
                             {candidate.averageScore > 0 && (
                               <div className="flex items-center gap-2 sm:gap-3">
-                                <span className="text-xs sm:text-sm text-gray-600 flex-shrink-0">Average Score:</span>
+                                <span className="text-xs sm:text-sm text-muted-foreground flex-shrink-0">Average Score:</span>
                                 <div className="flex items-center gap-2 flex-1">
                                   <Progress value={candidate.averageScore} className="flex-1 max-w-[120px] sm:max-w-xs" />
                                   <span className="text-xs sm:text-sm font-semibold text-purple-600 min-w-[2.5rem] sm:min-w-[3rem]">{candidate.averageScore}%</span>
@@ -1659,8 +1659,8 @@ export default function HRManagerDashboard({ user }) {
             </div>
           ) : (
             <div className="text-center py-12 border-2 border-dashed rounded-lg">
-              <Users className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-              <p className="text-gray-500">
+              <Users className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+              <p className="text-muted-foreground">
                 {candidateSearchQuery || candidateStatusFilter !== 'all' 
                   ? 'No candidates match your filters' 
                   : 'No candidates yet'}
@@ -1673,7 +1673,7 @@ export default function HRManagerDashboard({ user }) {
             <Card>
               <CardContent className="p-4">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-muted-foreground">
                     Showing {getPaginatedCandidates().length} of {filteredCandidates.length} candidates
                     {getTotalCandidatesPages() > 1 && (
                       <span> • Page {currentCandidatesPage} of {getTotalCandidatesPages()}</span>
@@ -1710,8 +1710,8 @@ export default function HRManagerDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Interviews</h1>
-              <p className="text-sm md:text-base text-gray-600">Manage and schedule interviews</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Interviews</h1>
+              <p className="text-sm md:text-base text-muted-foreground">Manage and schedule interviews</p>
             </div>
           </div>
 
@@ -1720,7 +1720,7 @@ export default function HRManagerDashboard({ user }) {
             <CardContent className="p-4 md:p-6">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     placeholder="Search by candidate name, email, or position..."
                     value={interviewSearchQuery}
@@ -1748,13 +1748,13 @@ export default function HRManagerDashboard({ user }) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <Card>
               <CardContent className="p-4">
-                <div className="text-sm text-gray-600 mb-1">Total Interviews</div>
-                <div className="text-2xl font-bold text-gray-900">{allInterviews.length}</div>
+                <div className="text-sm text-muted-foreground mb-1">Total Interviews</div>
+                <div className="text-2xl font-bold text-foreground">{allInterviews.length}</div>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-4">
-                <div className="text-sm text-gray-600 mb-1">Today</div>
+                <div className="text-sm text-muted-foreground mb-1">Today</div>
                 <div className="text-2xl font-bold text-blue-600">
                   {allInterviews.filter(i => {
                     if (!i.scheduledDate) return false;
@@ -1767,7 +1767,7 @@ export default function HRManagerDashboard({ user }) {
             </Card>
             <Card>
               <CardContent className="p-4">
-                <div className="text-sm text-gray-600 mb-1">Upcoming</div>
+                <div className="text-sm text-muted-foreground mb-1">Upcoming</div>
                 <div className="text-2xl font-bold text-orange-600">
                   {allInterviews.filter(i => {
                     if (!i.scheduledDate) return false;
@@ -1779,7 +1779,7 @@ export default function HRManagerDashboard({ user }) {
             </Card>
             <Card>
               <CardContent className="p-4">
-                <div className="text-sm text-gray-600 mb-1">Completed</div>
+                <div className="text-sm text-muted-foreground mb-1">Completed</div>
                 <div className="text-2xl font-bold text-green-600">
                   {allInterviews.filter(i => i.status === 'completed').length}
                 </div>
@@ -1833,7 +1833,7 @@ export default function HRManagerDashboard({ user }) {
                             />
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 mb-2 flex-wrap">
-                                <h3 className="font-semibold text-lg text-gray-900">
+                                <h3 className="font-semibold text-lg text-foreground">
                                   {candidateName}
                                 </h3>
                                 <Badge variant={statusBadgeMap[interview.status] || 'secondary'}>
@@ -1850,7 +1850,7 @@ export default function HRManagerDashboard({ user }) {
                                   </Badge>
                                 )}
                               </div>
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm text-gray-600">
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm text-muted-foreground">
                                 <div className="flex items-center gap-2">
                                   <Briefcase className="h-4 w-4 flex-shrink-0" />
                                   <span className="truncate">{interview.job?.title || 'N/A'}</span>
@@ -1904,7 +1904,7 @@ export default function HRManagerDashboard({ user }) {
               <Card>
                 <CardContent className="p-4">
                   <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-muted-foreground">
                       Showing {getPaginatedInterviews().length} of {filteredInterviews.length} interviews
                     </div>
                     <div className="flex items-center gap-2">
@@ -1917,7 +1917,7 @@ export default function HRManagerDashboard({ user }) {
                         <ChevronLeft className="h-4 w-4 mr-1" />
                         Previous
                       </Button>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-muted-foreground">
                         Page {currentInterviewsPage} of {getTotalInterviewsPages() || 1}
                       </div>
                       <Button
@@ -1936,8 +1936,8 @@ export default function HRManagerDashboard({ user }) {
             </>
           ) : (
             <div className="text-center py-12 border-2 border-dashed rounded-lg">
-              <Calendar className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-              <p className="text-gray-500">
+              <Calendar className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+              <p className="text-muted-foreground">
                 {interviewSearchQuery || interviewStatusFilter !== 'all' 
                   ? 'No interviews match your filters' 
                   : 'No interviews scheduled yet'}
@@ -1952,15 +1952,15 @@ export default function HRManagerDashboard({ user }) {
           {/* Header */}
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Communications</h2>
-              <p className="text-sm md:text-base text-gray-600 mt-1">View and manage all candidate communications</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">Communications</h2>
+              <p className="text-sm md:text-base text-muted-foreground mt-1">View and manage all candidate communications</p>
             </div>
           </div>
 
           {/* Search and Filters */}
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search by candidate name, email, or subject..."
                 value={communicationSearchQuery}
@@ -1989,11 +1989,11 @@ export default function HRManagerDashboard({ user }) {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Total Communications</CardTitle>
-                <Inbox className="h-4 w-4 text-gray-600" />
+                <Inbox className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{allCommunications.length}</div>
-                <p className="text-xs text-gray-600 mt-1">All messages</p>
+                <p className="text-xs text-muted-foreground mt-1">All messages</p>
               </CardContent>
             </Card>
 
@@ -2006,7 +2006,7 @@ export default function HRManagerDashboard({ user }) {
                 <div className="text-2xl font-bold text-blue-600">
                   {allCommunications.filter(c => !c.read).length}
                 </div>
-                <p className="text-xs text-gray-600 mt-1">Require attention</p>
+                <p className="text-xs text-muted-foreground mt-1">Require attention</p>
               </CardContent>
             </Card>
 
@@ -2023,7 +2023,7 @@ export default function HRManagerDashboard({ user }) {
                     return msgDate.toDateString() === today.toDateString();
                   }).length}
                 </div>
-                <p className="text-xs text-gray-600 mt-1">Today's messages</p>
+                <p className="text-xs text-muted-foreground mt-1">Today's messages</p>
               </CardContent>
             </Card>
 
@@ -2040,7 +2040,7 @@ export default function HRManagerDashboard({ user }) {
                     return new Date(c.date) >= weekAgo;
                   }).length}
                 </div>
-                <p className="text-xs text-gray-600 mt-1">Last 7 days</p>
+                <p className="text-xs text-muted-foreground mt-1">Last 7 days</p>
               </CardContent>
             </Card>
           </div>
@@ -2061,7 +2061,7 @@ export default function HRManagerDashboard({ user }) {
                     'acceptance': 'bg-emerald-100 text-emerald-800',
                     'rejection': 'bg-red-100 text-red-800'
                   };
-                  return colors[type] || 'bg-gray-100 text-gray-800';
+                  return colors[type] || 'bg-muted text-foreground';
                 };
 
                 const getTypeIcon = (type) => {
@@ -2084,8 +2084,8 @@ export default function HRManagerDashboard({ user }) {
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-2 flex-wrap">
-                            <TypeIcon className="h-5 w-5 flex-shrink-0 text-gray-600" />
-                            <h3 className="font-semibold text-gray-900 truncate">
+                            <TypeIcon className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                            <h3 className="font-semibold text-foreground truncate">
                               {communication.subject}
                             </h3>
                             <Badge className={getTypeColor(communication.type)}>
@@ -2102,7 +2102,7 @@ export default function HRManagerDashboard({ user }) {
                               </Badge>
                             )}
                           </div>
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm text-gray-600 mb-2">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm text-muted-foreground mb-2">
                             <div className="flex items-center gap-2">
                               <User className="h-4 w-4 flex-shrink-0" />
                               <span className="truncate">{communication.candidateName}</span>
@@ -2122,7 +2122,7 @@ export default function HRManagerDashboard({ user }) {
                               </span>
                             </div>
                           </div>
-                          <p className="text-sm text-gray-600 line-clamp-2">
+                          <p className="text-sm text-muted-foreground line-clamp-2">
                             {communication.message}
                           </p>
                           <div className="mt-2">
@@ -2151,8 +2151,8 @@ export default function HRManagerDashboard({ user }) {
             </div>
           ) : (
             <div className="text-center py-12 border-2 border-dashed rounded-lg">
-              <Mail className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-              <p className="text-gray-500">
+              <Mail className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+              <p className="text-muted-foreground">
                 {communicationSearchQuery || communicationTypeFilter !== 'all' 
                   ? 'No communications match your filters' 
                   : 'No communications yet'}
@@ -2165,7 +2165,7 @@ export default function HRManagerDashboard({ user }) {
             <Card>
               <CardContent className="p-4">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-muted-foreground">
                     Showing {getPaginatedCommunications().length} of {filteredCommunications.length} communications
                     {getTotalCommunicationsPages() > 1 && (
                       <span> • Page {currentCommunicationsPage} of {getTotalCommunicationsPages()}</span>
@@ -2202,8 +2202,8 @@ export default function HRManagerDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Analytics</h1>
-              <p className="text-sm md:text-base text-gray-600">Insights and metrics for recruitment performance</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Analytics</h1>
+              <p className="text-sm md:text-base text-muted-foreground">Insights and metrics for recruitment performance</p>
             </div>
             <Select value={dateRange} onValueChange={setDateRange}>
               <SelectTrigger className="w-full sm:w-[180px]">
@@ -2224,7 +2224,7 @@ export default function HRManagerDashboard({ user }) {
             </div>
           ) : analyticsError ? (
             <div className="text-center py-12 border-2 border-dashed rounded-lg">
-              <BarChart3 className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+              <BarChart3 className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
               <p className="text-red-600 mb-4">Error loading analytics: {analyticsError}</p>
               <Button onClick={fetchAnalyticsData}>Retry</Button>
             </div>
@@ -2235,10 +2235,10 @@ export default function HRManagerDashboard({ user }) {
                 <Card>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <div className="text-sm text-gray-600">Total Jobs</div>
+                      <div className="text-sm text-muted-foreground">Total Jobs</div>
                       <Briefcase className="h-5 w-5 text-purple-600" />
                     </div>
-                    <div className="text-2xl font-bold text-gray-900">
+                    <div className="text-2xl font-bold text-foreground">
                       {analyticsData?.summary?.totalJobs || 0}
                     </div>
                     <div className="text-xs text-green-600 mt-1">
@@ -2249,13 +2249,13 @@ export default function HRManagerDashboard({ user }) {
                 <Card>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <div className="text-sm text-gray-600">Total Applications</div>
+                      <div className="text-sm text-muted-foreground">Total Applications</div>
                       <FileText className="h-5 w-5 text-blue-600" />
                     </div>
-                    <div className="text-2xl font-bold text-gray-900">
+                    <div className="text-2xl font-bold text-foreground">
                       {applicationAnalytics?.totalApplications || 0}
                     </div>
-                    <div className="text-xs text-gray-600 mt-1">
+                    <div className="text-xs text-muted-foreground mt-1">
                       In selected period
                     </div>
                   </CardContent>
@@ -2263,25 +2263,25 @@ export default function HRManagerDashboard({ user }) {
                 <Card>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <div className="text-sm text-gray-600">Avg. Time to Hire</div>
+                      <div className="text-sm text-muted-foreground">Avg. Time to Hire</div>
                       <Clock className="h-5 w-5 text-orange-600" />
                     </div>
-                    <div className="text-2xl font-bold text-gray-900">
+                    <div className="text-2xl font-bold text-foreground">
                       {applicationAnalytics?.avgTimeToHire || 0}
                     </div>
-                    <div className="text-xs text-gray-600 mt-1">days</div>
+                    <div className="text-xs text-muted-foreground mt-1">days</div>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <div className="text-sm text-gray-600">Active Users</div>
+                      <div className="text-sm text-muted-foreground">Active Users</div>
                       <Users className="h-5 w-5 text-green-600" />
                     </div>
-                    <div className="text-2xl font-bold text-gray-900">
+                    <div className="text-2xl font-bold text-foreground">
                       {analyticsData?.summary?.activeUsers || 0}
                     </div>
-                    <div className="text-xs text-gray-600 mt-1">
+                    <div className="text-xs text-muted-foreground mt-1">
                       of {analyticsData?.summary?.totalUsers || 0} total
                     </div>
                   </CardContent>
@@ -2297,7 +2297,7 @@ export default function HRManagerDashboard({ user }) {
                   {/* Mobile: Stacked Layout */}
                   <div className="flex flex-col md:hidden space-y-4">
                     <div className="p-4 bg-purple-50 rounded-lg text-center">
-                      <div className="text-xs sm:text-sm text-gray-600 mb-2">Application to Shortlist</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground mb-2">Application to Shortlist</div>
                       <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-2">
                         {applicationAnalytics?.conversionRates?.applicationToShortlist || 0}%
                       </div>
@@ -2307,7 +2307,7 @@ export default function HRManagerDashboard({ user }) {
                       />
                     </div>
                     <div className="p-4 bg-blue-50 rounded-lg text-center">
-                      <div className="text-xs sm:text-sm text-gray-600 mb-2">Shortlist to Interview</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground mb-2">Shortlist to Interview</div>
                       <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">
                         {applicationAnalytics?.conversionRates?.shortlistToInterview || 0}%
                       </div>
@@ -2317,7 +2317,7 @@ export default function HRManagerDashboard({ user }) {
                       />
                     </div>
                     <div className="p-4 bg-green-50 rounded-lg text-center">
-                      <div className="text-xs sm:text-sm text-gray-600 mb-2">Interview to Hire</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground mb-2">Interview to Hire</div>
                       <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-2">
                         {applicationAnalytics?.conversionRates?.interviewToHire || 0}%
                       </div>
@@ -2331,7 +2331,7 @@ export default function HRManagerDashboard({ user }) {
                   {/* Desktop: Side-by-side with dividers */}
                   <div className="hidden md:flex items-center justify-around divide-x divide-gray-200">
                     <div className="flex-1 px-4 text-center">
-                      <div className="text-sm text-gray-600 mb-3">Application to Shortlist</div>
+                      <div className="text-sm text-muted-foreground mb-3">Application to Shortlist</div>
                       <div className="text-3xl font-bold text-purple-600 mb-2">
                         {applicationAnalytics?.conversionRates?.applicationToShortlist || 0}%
                       </div>
@@ -2341,7 +2341,7 @@ export default function HRManagerDashboard({ user }) {
                       />
                     </div>
                     <div className="flex-1 px-4 text-center">
-                      <div className="text-sm text-gray-600 mb-3">Shortlist to Interview</div>
+                      <div className="text-sm text-muted-foreground mb-3">Shortlist to Interview</div>
                       <div className="text-3xl font-bold text-blue-600 mb-2">
                         {applicationAnalytics?.conversionRates?.shortlistToInterview || 0}%
                       </div>
@@ -2351,7 +2351,7 @@ export default function HRManagerDashboard({ user }) {
                       />
                     </div>
                     <div className="flex-1 px-4 text-center">
-                      <div className="text-sm text-gray-600 mb-3">Interview to Hire</div>
+                      <div className="text-sm text-muted-foreground mb-3">Interview to Hire</div>
                       <div className="text-3xl font-bold text-green-600 mb-2">
                         {applicationAnalytics?.conversionRates?.interviewToHire || 0}%
                       </div>
@@ -2374,7 +2374,7 @@ export default function HRManagerDashboard({ user }) {
                     <div className="space-y-3">
                       {analyticsData?.applicationsByStatus?.map((item, index) => {
                         const statusColors = {
-                          'submitted': 'bg-gray-500',
+                          'submitted': 'bg-muted/500',
                           'under_review': 'bg-blue-500',
                           'shortlisted': 'bg-purple-500',
                           'interview_scheduled': 'bg-yellow-500',
@@ -2403,16 +2403,16 @@ export default function HRManagerDashboard({ user }) {
                         return (
                           <div key={index}>
                             <div className="flex items-center justify-between mb-1">
-                              <span className="text-xs sm:text-sm font-medium text-gray-700 truncate">
+                              <span className="text-xs sm:text-sm font-medium text-foreground truncate">
                                 {statusLabels[item._id] || item._id}
                               </span>
-                              <span className="text-xs sm:text-sm text-gray-600 flex-shrink-0 ml-2">
+                              <span className="text-xs sm:text-sm text-muted-foreground flex-shrink-0 ml-2">
                                 {item.count} ({percentage}%)
                               </span>
                             </div>
-                            <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div className="w-full bg-muted rounded-full h-2">
                               <div 
-                                className={`${statusColors[item._id] || 'bg-gray-500'} h-2 rounded-full transition-all duration-300`}
+                                className={`${statusColors[item._id] || 'bg-muted/500'} h-2 rounded-full transition-all duration-300`}
                                 style={{ width: `${percentage}%` }}
                               />
                             </div>
@@ -2438,14 +2438,14 @@ export default function HRManagerDashboard({ user }) {
                         return (
                           <div key={index}>
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1">
-                              <span className="text-xs sm:text-sm font-medium text-gray-700 truncate">
+                              <span className="text-xs sm:text-sm font-medium text-foreground truncate">
                                 {item._id || 'Not Specified'}
                               </span>
-                              <span className="text-xs sm:text-sm text-gray-600 flex-shrink-0">
+                              <span className="text-xs sm:text-sm text-muted-foreground flex-shrink-0">
                                 {item.count} jobs ({item.openPositions} open)
                               </span>
                             </div>
-                            <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div className="w-full bg-muted rounded-full h-2">
                               <div 
                                 className={`${colors[index % colors.length]} h-2 rounded-full transition-all duration-300`}
                                 style={{ width: `${percentage}%` }}
@@ -2468,20 +2468,20 @@ export default function HRManagerDashboard({ user }) {
                   <div className="space-y-3 md:space-y-4">
                     {analyticsData?.topJobs?.length > 0 ? (
                       analyticsData.topJobs.map((job, index) => (
-                        <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 md:p-4 bg-gray-50 rounded-lg">
+                        <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 md:p-4 bg-muted/50 rounded-lg">
                           <div className="flex-1 min-w-0">
-                            <h4 className="font-semibold text-sm md:text-base text-gray-900 truncate">{job.title}</h4>
-                            <p className="text-xs md:text-sm text-gray-600 truncate">{job.department}</p>
+                            <h4 className="font-semibold text-sm md:text-base text-foreground truncate">{job.title}</h4>
+                            <p className="text-xs md:text-sm text-muted-foreground truncate">{job.department}</p>
                           </div>
                           <div className="flex gap-4 sm:gap-6 items-center">
                             <div className="text-center">
-                              <div className="text-xs md:text-sm text-gray-600">Applications</div>
+                              <div className="text-xs md:text-sm text-muted-foreground">Applications</div>
                               <div className="text-lg md:text-xl font-bold text-purple-600">
                                 {job.applicationsCount || 0}
                               </div>
                             </div>
                             <div className="text-center">
-                              <div className="text-xs md:text-sm text-gray-600">Views</div>
+                              <div className="text-xs md:text-sm text-muted-foreground">Views</div>
                               <div className="text-lg md:text-xl font-bold text-blue-600">
                                 {job.viewsCount || 0}
                               </div>
@@ -2490,8 +2490,8 @@ export default function HRManagerDashboard({ user }) {
                         </div>
                       ))
                     ) : (
-                      <div className="text-center py-8 text-gray-500">
-                        <BarChart3 className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-2 text-gray-400" />
+                      <div className="text-center py-8 text-muted-foreground">
+                        <BarChart3 className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-2 text-muted-foreground" />
                         <p className="text-sm md:text-base">No job data available</p>
                       </div>
                     )}
@@ -2520,7 +2520,7 @@ export default function HRManagerDashboard({ user }) {
                           <div className="text-2xl md:text-3xl font-bold text-purple-600 mb-1">
                             {item.count}
                           </div>
-                          <div className="text-xs md:text-sm text-gray-600">
+                          <div className="text-xs md:text-sm text-muted-foreground">
                             {typeLabels[item._id] || item._id}
                           </div>
                         </div>
@@ -2539,26 +2539,26 @@ export default function HRManagerDashboard({ user }) {
                   <div className="space-y-2 md:space-y-3">
                     {jobAnalytics?.mostViewedJobs?.length > 0 ? (
                       jobAnalytics.mostViewedJobs.slice(0, 5).map((job, index) => (
-                        <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 p-2 md:p-3 bg-gray-50 rounded">
+                        <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 p-2 md:p-3 bg-muted/50 rounded">
                           <div className="flex-1 min-w-0">
-                            <p className="font-medium text-sm md:text-base text-gray-900 truncate">{job.title}</p>
-                            <p className="text-xs md:text-sm text-gray-600 truncate">{job.department}</p>
+                            <p className="font-medium text-sm md:text-base text-foreground truncate">{job.title}</p>
+                            <p className="text-xs md:text-sm text-muted-foreground truncate">{job.department}</p>
                           </div>
                           <div className="flex gap-4 sm:gap-6 items-center justify-start sm:justify-end">
                             <div className="flex items-center gap-1">
                               <Eye className="h-3 w-3 md:h-4 md:w-4 text-blue-600" />
-                              <span className="text-sm md:text-base font-semibold text-gray-900">{job.viewsCount || 0}</span>
+                              <span className="text-sm md:text-base font-semibold text-foreground">{job.viewsCount || 0}</span>
                             </div>
                             <div className="flex items-center gap-1">
                               <FileText className="h-3 w-3 md:h-4 md:w-4 text-purple-600" />
-                              <span className="text-sm md:text-base font-semibold text-gray-900">{job.applicationsCount || 0}</span>
+                              <span className="text-sm md:text-base font-semibold text-foreground">{job.applicationsCount || 0}</span>
                             </div>
                           </div>
                         </div>
                       ))
                     ) : (
-                      <div className="text-center py-8 text-gray-500">
-                        <Eye className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-2 text-gray-400" />
+                      <div className="text-center py-8 text-muted-foreground">
+                        <Eye className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-2 text-muted-foreground" />
                         <p className="text-sm md:text-base">No view data available</p>
                       </div>
                     )}
@@ -2839,16 +2839,16 @@ export default function HRManagerDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Attendance & Leaves Control</h1>
-              <p className="text-sm md:text-base text-gray-600">Review pending leaves and inspect daily employee logs</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Attendance & Leaves Control</h1>
+              <p className="text-sm md:text-base text-muted-foreground">Review pending leaves and inspect daily employee logs</p>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-600 font-medium">Select Date:</span>
+              <span className="text-sm text-muted-foreground font-medium">Select Date:</span>
               <Input
                 type="date"
                 value={attendanceDate}
                 onChange={(e) => setAttendanceDate(e.target.value)}
-                className="w-auto bg-white"
+                className="w-auto bg-background"
               />
             </div>
           </div>
@@ -2871,9 +2871,9 @@ export default function HRManagerDashboard({ user }) {
                 </div>
               ) : pendingLeaves.length === 0 ? (
                 <Card>
-                  <CardContent className="p-12 text-center text-gray-500">
+                  <CardContent className="p-12 text-center text-muted-foreground">
                     <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">All Caught Up!</h3>
+                    <h3 className="text-lg font-semibold text-foreground mb-1">All Caught Up!</h3>
                     <p className="text-sm">There are no pending leave requests to review.</p>
                   </CardContent>
                 </Card>
@@ -2884,8 +2884,8 @@ export default function HRManagerDashboard({ user }) {
                       <CardHeader className="bg-purple-50/50 p-4 border-b">
                         <div className="flex items-center justify-between">
                           <div>
-                            <h3 className="font-bold text-gray-900">{leave.firstName} {leave.lastName}</h3>
-                            <p className="text-xs text-gray-500">{leave.email} • {leave.department || 'No Dept'}</p>
+                            <h3 className="font-bold text-foreground">{leave.firstName} {leave.lastName}</h3>
+                            <p className="text-xs text-muted-foreground">{leave.email} • {leave.department || 'No Dept'}</p>
                           </div>
                           <Badge className="bg-purple-100 text-purple-800 border-purple-200 border">
                             {leave.type} Leave
@@ -2895,14 +2895,14 @@ export default function HRManagerDashboard({ user }) {
                       <CardContent className="p-6 space-y-4">
                         <div className="space-y-2 text-sm">
                           <div className="flex justify-between">
-                            <span className="text-gray-500">Duration:</span>
-                            <span className="font-medium text-gray-800">
+                            <span className="text-muted-foreground">Duration:</span>
+                            <span className="font-medium text-foreground">
                               {new Date(leave.startDate).toLocaleDateString()} to {new Date(leave.endDate).toLocaleDateString()}
                             </span>
                           </div>
                           <div className="space-y-1 pt-2">
-                            <span className="text-gray-500 block">Reason:</span>
-                            <p className="p-3 bg-gray-50 rounded-lg text-gray-700 italic border">
+                            <span className="text-muted-foreground block">Reason:</span>
+                            <p className="p-3 bg-muted/50 rounded-lg text-foreground italic border">
                               "{leave.reason}"
                             </p>
                           </div>
@@ -2939,13 +2939,13 @@ export default function HRManagerDashboard({ user }) {
                       <Loader2 className="h-8 w-8 animate-spin text-purple-600" />
                     </div>
                   ) : dailyAttendance.length === 0 ? (
-                    <div className="text-center py-12 text-gray-500">
+                    <div className="text-center py-12 text-muted-foreground">
                       No daily shift logs recorded for {attendanceDate}.
                     </div>
                   ) : (
                     <div className="overflow-x-auto">
-                      <table className="w-full text-sm text-left text-gray-600">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                      <table className="w-full text-sm text-left text-muted-foreground">
+                        <thead className="text-xs text-foreground uppercase bg-muted/50">
                           <tr>
                             <th className="px-4 py-3">Employee</th>
                             <th className="px-4 py-3">Department</th>
@@ -2958,10 +2958,10 @@ export default function HRManagerDashboard({ user }) {
                         </thead>
                         <tbody>
                           {dailyAttendance.map((log) => (
-                            <tr key={log._id} className="bg-white border-b hover:bg-gray-50">
-                              <td className="px-4 py-3 font-semibold text-gray-900">
+                            <tr key={log._id} className="bg-card border-b border-border hover:bg-muted/50">
+                              <td className="px-4 py-3 font-semibold text-foreground">
                                 {log.user?.firstName} {log.user?.lastName}
-                                <span className="block text-xs text-gray-400 font-normal">{log.user?.position || 'Employee'}</span>
+                                <span className="block text-xs text-muted-foreground font-normal">{log.user?.position || 'Employee'}</span>
                               </td>
                               <td className="px-4 py-3">{log.user?.department || 'N/A'}</td>
                               <td className="px-4 py-3">

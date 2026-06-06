@@ -210,21 +210,21 @@ export default function SettingsDialog({ isOpen, onClose, user }) {
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="email"
                       value={accountData.email}
                       disabled
-                      className="pl-10 bg-gray-50"
+                      className="pl-10 bg-muted/50"
                     />
                   </div>
-                  <p className="text-xs text-gray-500">Email cannot be changed</p>
+                  <p className="text-xs text-muted-foreground">Email cannot be changed</p>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone Number</Label>
                   <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="phone"
                       value={accountData.phone}
@@ -239,12 +239,12 @@ export default function SettingsDialog({ isOpen, onClose, user }) {
                   <div className="space-y-2">
                     <Label htmlFor="department">Department</Label>
                     <div className="relative">
-                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
                         id="department"
                         value={accountData.department}
                         disabled
-                        className="pl-10 bg-gray-50"
+                        className="pl-10 bg-muted/50"
                       />
                     </div>
                   </div>
@@ -254,7 +254,7 @@ export default function SettingsDialog({ isOpen, onClose, user }) {
                       id="position"
                       value={accountData.position}
                       disabled
-                      className="bg-gray-50"
+                      className="bg-muted/50"
                     />
                   </div>
                 </div>
@@ -303,7 +303,7 @@ export default function SettingsDialog({ isOpen, onClose, user }) {
                     onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
                     placeholder="Enter new password"
                   />
-                  <p className="text-xs text-gray-500">Password must be at least 6 characters long</p>
+                  <p className="text-xs text-muted-foreground">Password must be at least 6 characters long</p>
                 </div>
 
                 <div className="space-y-2">
@@ -341,11 +341,11 @@ export default function SettingsDialog({ isOpen, onClose, user }) {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">Two-Factor Authentication</p>
-                    <p className="text-xs text-gray-500">Require a verification code in addition to your password</p>
+                    <p className="text-xs text-muted-foreground">Require a verification code in addition to your password</p>
                   </div>
                   <Switch disabled />
                 </div>
-                <p className="text-xs text-gray-500 mt-2">Coming soon</p>
+                <p className="text-xs text-muted-foreground mt-2">Coming soon</p>
               </CardContent>
             </Card>
           </TabsContent>
@@ -361,7 +361,7 @@ export default function SettingsDialog({ isOpen, onClose, user }) {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">Email Notifications</p>
-                    <p className="text-xs text-gray-500">Receive notifications via email</p>
+                    <p className="text-xs text-muted-foreground">Receive notifications via email</p>
                   </div>
                   <Switch
                     checked={notificationSettings.emailNotifications}
@@ -374,7 +374,7 @@ export default function SettingsDialog({ isOpen, onClose, user }) {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">Application Updates</p>
-                    <p className="text-xs text-gray-500">Get notified about new applications</p>
+                    <p className="text-xs text-muted-foreground">Get notified about new applications</p>
                   </div>
                   <Switch
                     checked={notificationSettings.applicationUpdates}
@@ -387,7 +387,7 @@ export default function SettingsDialog({ isOpen, onClose, user }) {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">Interview Reminders</p>
-                    <p className="text-xs text-gray-500">Receive reminders for scheduled interviews</p>
+                    <p className="text-xs text-muted-foreground">Receive reminders for scheduled interviews</p>
                   </div>
                   <Switch
                     checked={notificationSettings.interviewReminders}
@@ -400,7 +400,7 @@ export default function SettingsDialog({ isOpen, onClose, user }) {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">Weekly Reports</p>
-                    <p className="text-xs text-gray-500">Get weekly summary reports</p>
+                    <p className="text-xs text-muted-foreground">Get weekly summary reports</p>
                   </div>
                   <Switch
                     checked={notificationSettings.weeklyReports}
@@ -413,7 +413,7 @@ export default function SettingsDialog({ isOpen, onClose, user }) {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">System Alerts</p>
-                    <p className="text-xs text-gray-500">Important system notifications</p>
+                    <p className="text-xs text-muted-foreground">Important system notifications</p>
                   </div>
                   <Switch
                     checked={notificationSettings.systemAlerts}
