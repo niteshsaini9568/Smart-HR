@@ -2574,8 +2574,8 @@ export default function HRManagerDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Job Postings</h1>
-              <p className="text-sm md:text-base text-gray-600">Create and manage job openings</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Job Postings</h1>
+              <p className="text-sm md:text-base text-muted-foreground">Create and manage job openings</p>
             </div>
             <Button onClick={() => setIsCreateJobOpen(true)} className="w-full sm:w-auto">
               <Plus className="h-4 w-4 mr-2" />
@@ -2609,8 +2609,8 @@ export default function HRManagerDashboard({ user }) {
                         <CardContent className="p-4 md:p-6">
                           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                             <div className="flex-1 min-w-0">
-                              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 truncate">{job.title}</h3>
-                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
+                              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2 truncate">{job.title}</h3>
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
                                 <span className="truncate">{job.department}</span>
                                 <span className="hidden sm:inline">•</span>
                                 <span>{job.applicationsCount || 0} applications</span>
@@ -2636,7 +2636,7 @@ export default function HRManagerDashboard({ user }) {
                   <Card className="mt-6">
                     <CardContent className="p-4">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-muted-foreground">
                           Showing {getPaginatedJobs('open').length} of {allJobs.filter(j => j.status === 'open').length} jobs
                           {getTotalPages('open') > 1 && (
                             <span className="ml-2">• Page {currentJobsPage} of {getTotalPages('open')}</span>
@@ -2669,9 +2669,9 @@ export default function HRManagerDashboard({ user }) {
                   </Card>
                 </>
               ) : (
-                <div className="text-center py-12 border-2 border-dashed rounded-lg">
-                  <Briefcase className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-                  <p className="text-sm sm:text-base text-gray-500">No active job postings</p>
+                <div className="text-center py-12 border-2 border-dashed border-border rounded-lg">
+                  <Briefcase className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+                  <p className="text-sm sm:text-base text-muted-foreground">No active job postings</p>
                   <Button className="mt-4 w-full sm:w-auto" onClick={() => setIsCreateJobOpen(true)}>
                     <Plus className="h-4 w-4 mr-2" />
                     Create Your First Job
@@ -2693,8 +2693,8 @@ export default function HRManagerDashboard({ user }) {
                         <CardContent className="p-4 md:p-6">
                           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                             <div className="flex-1 min-w-0">
-                              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 truncate">{job.title}</h3>
-                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
+                              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2 truncate">{job.title}</h3>
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
                                 <span className="truncate">{job.department}</span>
                                 <span className="hidden sm:inline">•</span>
                                 <span>Created {daysAgo} {daysAgo === 1 ? 'day' : 'days'} ago</span>
@@ -2715,7 +2715,7 @@ export default function HRManagerDashboard({ user }) {
                   <Card className="mt-6">
                     <CardContent className="p-4">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-muted-foreground">
                           Showing {getPaginatedJobs('draft').length} of {allJobs.filter(j => j.status === 'draft').length} jobs
                           {getTotalPages('draft') > 1 && (
                             <span className="ml-2">• Page {currentJobsPage} of {getTotalPages('draft')}</span>
@@ -2748,9 +2748,9 @@ export default function HRManagerDashboard({ user }) {
                   </Card>
                 </>
               ) : (
-                <div className="text-center py-12 border-2 border-dashed rounded-lg">
-                  <FileText className="h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-4 text-gray-400" />
-                  <p className="text-sm sm:text-base text-gray-500">No draft job postings</p>
+                <div className="text-center py-12 border-2 border-dashed border-border rounded-lg">
+                  <FileText className="h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-4 text-muted-foreground" />
+                  <p className="text-sm sm:text-base text-muted-foreground">No draft job postings</p>
                 </div>
               )}
             </TabsContent>
@@ -2768,8 +2768,8 @@ export default function HRManagerDashboard({ user }) {
                         <CardContent className="p-4 md:p-6">
                           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                             <div className="flex-1 min-w-0">
-                              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 truncate">{job.title}</h3>
-                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
+                              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2 truncate">{job.title}</h3>
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
                                 <span className="truncate">{job.department}</span>
                                 <span className="hidden sm:inline">•</span>
                                 <span>{job.applicationsCount || 0} applications</span>
@@ -2792,7 +2792,7 @@ export default function HRManagerDashboard({ user }) {
                   <Card className="mt-6">
                     <CardContent className="p-4">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-muted-foreground">
                           Showing {getPaginatedJobs('closed').length} of {allJobs.filter(j => j.status === 'closed').length} jobs
                           {getTotalPages('closed') > 1 && (
                             <span className="ml-2">• Page {currentJobsPage} of {getTotalPages('closed')}</span>
@@ -2825,9 +2825,9 @@ export default function HRManagerDashboard({ user }) {
                   </Card>
                 </>
               ) : (
-                <div className="text-center py-12 border-2 border-dashed rounded-lg">
-                  <FileText className="h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-4 text-gray-400" />
-                  <p className="text-sm sm:text-base text-gray-500">No closed job postings</p>
+                <div className="text-center py-12 border-2 border-dashed border-border rounded-lg">
+                  <FileText className="h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-4 text-muted-foreground" />
+                  <p className="text-sm sm:text-base text-muted-foreground">No closed job postings</p>
                 </div>
               )}
             </TabsContent>
