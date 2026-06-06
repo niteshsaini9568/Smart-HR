@@ -671,7 +671,7 @@ export default function ManagerDashboard({ user }) {
             </CardHeader>
             <CardContent>
               {dashboardData.activeRequisitions.length === 0 ? (
-                <div className="text-center py-8 text-sm md:text-base text-gray-500">
+                <div className="text-center py-8 text-sm md:text-base text-muted-foreground">
                   No active requisitions found
                 </div>
               ) : (
@@ -680,12 +680,12 @@ export default function ManagerDashboard({ user }) {
                     <div key={req._id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 md:p-4 border rounded-lg gap-3">
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <h3 className="text-sm md:text-base font-semibold text-gray-900">{req.title}</h3>
+                          <h3 className="text-sm md:text-base font-semibold text-foreground">{req.title}</h3>
                           <Badge variant={req.status === 'open' ? 'default' : 'secondary'} className="text-xs">
                             {req.status}
                           </Badge>
                         </div>
-                        <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-600">
+                        <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-muted-foreground">
                           <span>{req.applicants} applicants</span>
                           <span>•</span>
                           <span>{req.interviews} interviews</span>
@@ -724,7 +724,7 @@ export default function ManagerDashboard({ user }) {
             </CardHeader>
             <CardContent>
               {dashboardData.hiringProgress.length === 0 ? (
-                <div className="text-center py-8 text-sm md:text-base text-gray-500">
+                <div className="text-center py-8 text-sm md:text-base text-muted-foreground">
                   No hiring progress data available
                 </div>
               ) : (
@@ -733,7 +733,7 @@ export default function ManagerDashboard({ user }) {
                     <div key={index}>
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm md:text-base font-medium">{item.role}</span>
-                        <span className="text-xs md:text-sm text-gray-600 whitespace-nowrap ml-2">
+                        <span className="text-xs md:text-sm text-muted-foreground whitespace-nowrap ml-2">
                           {item.current}/{item.target} filled
                         </span>
                       </div>
@@ -752,8 +752,8 @@ export default function ManagerDashboard({ user }) {
           {/* Header - Mobile Responsive */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-1">Job Requisitions</h1>
-              <p className="text-sm md:text-base text-gray-600">Manage all job requisitions for your department</p>
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-1">Job Requisitions</h1>
+              <p className="text-sm md:text-base text-muted-foreground">Manage all job requisitions for your department</p>
             </div>
             <Button onClick={handleNewRequisition} className="w-full sm:w-auto">
               <Plus className="h-4 w-4 mr-2" />
@@ -767,7 +767,7 @@ export default function ManagerDashboard({ user }) {
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
                       placeholder="Search by title, department, location, or type..."
                       value={requisitionSearchQuery}
@@ -799,7 +799,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4 md:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs md:text-sm text-gray-600 mb-1">Total Requisitions</p>
+                    <p className="text-xs md:text-sm text-muted-foreground mb-1">Total Requisitions</p>
                     <p className="text-xl md:text-2xl font-bold">{getFilteredRequisitions().length}</p>
                   </div>
                   <Briefcase className="h-8 w-8 text-blue-600" />
@@ -810,7 +810,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4 md:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs md:text-sm text-gray-600 mb-1">Open Positions</p>
+                    <p className="text-xs md:text-sm text-muted-foreground mb-1">Open Positions</p>
                     <p className="text-xl md:text-2xl font-bold">
                       {getFilteredRequisitions().filter(r => r.status === 'open').length}
                     </p>
@@ -823,7 +823,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4 md:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs md:text-sm text-gray-600 mb-1">Total Applications</p>
+                    <p className="text-xs md:text-sm text-muted-foreground mb-1">Total Applications</p>
                     <p className="text-xl md:text-2xl font-bold">
                       {getFilteredRequisitions().reduce((sum, r) => sum + r.applicants, 0)}
                     </p>
@@ -836,7 +836,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4 md:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs md:text-sm text-gray-600 mb-1">Interviews</p>
+                    <p className="text-xs md:text-sm text-muted-foreground mb-1">Interviews</p>
                     <p className="text-xl md:text-2xl font-bold">
                       {getFilteredRequisitions().reduce((sum, r) => sum + r.interviews, 0)}
                     </p>
@@ -851,14 +851,14 @@ export default function ManagerDashboard({ user }) {
           {getFilteredRequisitions().length === 0 ? (
             <Card>
               <CardContent className="p-8 md:p-12">
-                <div className="text-center text-gray-500">
-                  <Briefcase className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3 md:mb-4 text-gray-400" />
+                <div className="text-center text-muted-foreground">
+                  <Briefcase className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3 md:mb-4 text-muted-foreground" />
                   <p className="text-sm md:text-base mb-2">
                     {requisitionSearchQuery || requisitionStatusFilter !== 'all' 
                       ? 'No requisitions found matching your filters' 
                       : 'No job requisitions found'}
                   </p>
-                  <p className="text-xs md:text-sm text-gray-400 mb-4">
+                  <p className="text-xs md:text-sm text-muted-foreground mb-4">
                     {requisitionSearchQuery || requisitionStatusFilter !== 'all'
                       ? 'Try adjusting your search or filter criteria'
                       : 'Create your first job requisition to start hiring'}
@@ -880,7 +880,7 @@ export default function ManagerDashboard({ user }) {
                         {/* Job Info */}
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-2 mb-3">
-                            <h3 className="text-base md:text-lg font-semibold text-gray-900">{req.title}</h3>
+                            <h3 className="text-base md:text-lg font-semibold text-foreground">{req.title}</h3>
                             <Badge variant={req.status === 'open' ? 'default' : 'secondary'} className="text-xs">
                               {req.status}
                             </Badge>
@@ -889,20 +889,20 @@ export default function ManagerDashboard({ user }) {
                           {/* Job Details Grid */}
                           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-3">
                             <div>
-                              <p className="text-xs text-gray-500">Location</p>
-                              <p className="text-sm font-medium text-gray-900">{req.location || 'Remote'}</p>
+                              <p className="text-xs text-muted-foreground">Location</p>
+                              <p className="text-sm font-medium text-foreground">{req.location || 'Remote'}</p>
                             </div>
                             <div>
-                              <p className="text-xs text-gray-500">Type</p>
-                              <p className="text-sm font-medium text-gray-900">{req.type || 'Full-time'}</p>
+                              <p className="text-xs text-muted-foreground">Type</p>
+                              <p className="text-sm font-medium text-foreground">{req.type || 'Full-time'}</p>
                             </div>
                             <div>
-                              <p className="text-xs text-gray-500">Department</p>
-                              <p className="text-sm font-medium text-gray-900">{req.department || 'N/A'}</p>
+                              <p className="text-xs text-muted-foreground">Department</p>
+                              <p className="text-sm font-medium text-foreground">{req.department || 'N/A'}</p>
                             </div>
                             <div>
-                              <p className="text-xs text-gray-500">Posted</p>
-                              <p className="text-sm font-medium text-gray-900">
+                              <p className="text-xs text-muted-foreground">Posted</p>
+                              <p className="text-sm font-medium text-foreground">
                                 {req.createdAt ? formatDate(req.createdAt) : 'Recently'}
                               </p>
                             </div>
@@ -912,16 +912,16 @@ export default function ManagerDashboard({ user }) {
                           <div className="flex flex-wrap items-center gap-4 text-sm">
                             <div className="flex items-center gap-1.5">
                               <Users className="h-4 w-4 text-blue-600" />
-                              <span className="text-gray-600">{req.applicants} applicants</span>
+                              <span className="text-muted-foreground">{req.applicants} applicants</span>
                             </div>
                             <div className="flex items-center gap-1.5">
                               <CheckCircle className="h-4 w-4 text-green-600" />
-                              <span className="text-gray-600">{req.interviews} interviews</span>
+                              <span className="text-muted-foreground">{req.interviews} interviews</span>
                             </div>
                             {req.salary && (
                               <div className="flex items-center gap-1.5">
                                 <Star className="h-4 w-4 text-yellow-600" />
-                                <span className="text-gray-600">${req.salary.min}k - ${req.salary.max}k</span>
+                                <span className="text-muted-foreground">${req.salary.min}k - ${req.salary.max}k</span>
                               </div>
                             )}
                           </div>
@@ -1017,8 +1017,8 @@ export default function ManagerDashboard({ user }) {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-1">Applications</h1>
-              <p className="text-sm md:text-base text-gray-600">Manage all job applications for your department</p>
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-1">Applications</h1>
+              <p className="text-sm md:text-base text-muted-foreground">Manage all job applications for your department</p>
             </div>
             <Button onClick={fetchApplications} variant="outline" className="w-full sm:w-auto">
               <RefreshCw className="h-4 w-4 mr-2" />
@@ -1031,7 +1031,7 @@ export default function ManagerDashboard({ user }) {
             <CardContent className="p-4">
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     placeholder="Search by name, email or job title..."
                     value={searchQuery}
@@ -1058,7 +1058,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-gray-600 mb-1">Total</p>
+                    <p className="text-xs text-muted-foreground mb-1">Total</p>
                     <p className="text-xl md:text-2xl font-bold">{applications.length}</p>
                   </div>
                   <FileText className="h-6 w-6 md:h-8 md:w-8 text-blue-600" />
@@ -1069,7 +1069,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-gray-600 mb-1">New</p>
+                    <p className="text-xs text-muted-foreground mb-1">New</p>
                     <p className="text-xl md:text-2xl font-bold">
                       {applications.filter(a => a.status === 'submitted').length}
                     </p>
@@ -1082,7 +1082,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-gray-600 mb-1">Shortlisted</p>
+                    <p className="text-xs text-muted-foreground mb-1">Shortlisted</p>
                     <p className="text-xl md:text-2xl font-bold">
                       {applications.filter(a => a.status === 'shortlisted').length}
                     </p>
@@ -1095,7 +1095,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-gray-600 mb-1">Interviewed</p>
+                    <p className="text-xs text-muted-foreground mb-1">Interviewed</p>
                     <p className="text-xl md:text-2xl font-bold">
                       {applications.filter(a => a.status === 'interviewed').length}
                     </p>
@@ -1111,18 +1111,18 @@ export default function ManagerDashboard({ user }) {
             <Card>
               <CardContent className="p-12">
                 <div className="flex items-center justify-center">
-                  <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
-                  <span className="ml-3 text-gray-600">Loading applications...</span>
+                  <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                  <span className="ml-3 text-muted-foreground">Loading applications...</span>
                 </div>
               </CardContent>
             </Card>
           ) : getFilteredApplications().length === 0 ? (
             <Card>
               <CardContent className="p-8 md:p-12">
-                <div className="text-center text-gray-500">
-                  <FileText className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3 md:mb-4 text-gray-400" />
+                <div className="text-center text-muted-foreground">
+                  <FileText className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3 md:mb-4 text-muted-foreground" />
                   <p className="text-sm md:text-base mb-2">No applications found</p>
-                  <p className="text-xs md:text-sm text-gray-400">
+                  <p className="text-xs md:text-sm text-muted-foreground">
                     {searchQuery || statusFilter !== 'all' 
                       ? 'Try adjusting your filters' 
                       : 'Applications will appear here when candidates apply'}
@@ -1146,7 +1146,7 @@ export default function ManagerDashboard({ user }) {
                         />
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-2 mb-2">
-                            <h3 className="text-base md:text-lg font-semibold text-gray-900">
+                            <h3 className="text-base md:text-lg font-semibold text-foreground">
                               {app.applicant?.firstName} {app.applicant?.lastName}
                             </h3>
                             <Badge variant={getStatusBadgeVariant(app.status)} className="text-xs">
@@ -1156,13 +1156,13 @@ export default function ManagerDashboard({ user }) {
 
                           {/* Job Title */}
                           <div className="mb-2">
-                            <p className="text-sm md:text-base text-gray-700 font-medium">
+                            <p className="text-sm md:text-base text-foreground font-medium">
                               {app.job?.title || 'Position not specified'}
                             </p>
                           </div>
 
                           {/* Contact Info */}
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs md:text-sm text-gray-600">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs md:text-sm text-muted-foreground">
                             <div className="flex items-center gap-1.5">
                               <Mail className="h-3 w-3 md:h-4 md:w-4" />
                               <span className="truncate">{app.applicant?.email}</span>
@@ -1333,8 +1333,8 @@ export default function ManagerDashboard({ user }) {
           {/* Header - Mobile Responsive */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-1">Candidates</h1>
-              <p className="text-sm md:text-base text-gray-600">Review and compare shortlisted candidates</p>
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-1">Candidates</h1>
+              <p className="text-sm md:text-base text-muted-foreground">Review and compare shortlisted candidates</p>
             </div>
             <div className="flex gap-2">
               {selectedCandidates.length > 0 && (
@@ -1355,7 +1355,7 @@ export default function ManagerDashboard({ user }) {
             <CardContent className="p-4">
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     placeholder="Search candidates by name or email..."
                     value={candidateSearchQuery}
@@ -1383,7 +1383,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-gray-600 mb-1">Total</p>
+                    <p className="text-xs text-muted-foreground mb-1">Total</p>
                     <p className="text-xl md:text-2xl font-bold">{candidates.length}</p>
                   </div>
                   <Users className="h-6 w-6 md:h-8 md:w-8 text-blue-600" />
@@ -1394,7 +1394,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-gray-600 mb-1">Shortlisted</p>
+                    <p className="text-xs text-muted-foreground mb-1">Shortlisted</p>
                     <p className="text-xl md:text-2xl font-bold">
                       {candidates.filter(c => c.status === 'shortlisted').length}
                     </p>
@@ -1407,7 +1407,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-gray-600 mb-1">Interview</p>
+                    <p className="text-xs text-muted-foreground mb-1">Interview</p>
                     <p className="text-xl md:text-2xl font-bold">
                       {candidates.filter(c => ['interview_scheduled', 'interviewed'].includes(c.status)).length}
                     </p>
@@ -1420,7 +1420,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-gray-600 mb-1">Offers</p>
+                    <p className="text-xs text-muted-foreground mb-1">Offers</p>
                     <p className="text-xl md:text-2xl font-bold">
                       {candidates.filter(c => c.status === 'offer_extended').length}
                     </p>
@@ -1436,18 +1436,18 @@ export default function ManagerDashboard({ user }) {
             <Card>
               <CardContent className="p-12">
                 <div className="flex items-center justify-center">
-                  <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
-                  <span className="ml-3 text-gray-600">Loading candidates...</span>
+                  <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                  <span className="ml-3 text-muted-foreground">Loading candidates...</span>
                 </div>
               </CardContent>
             </Card>
           ) : getFilteredCandidates().length === 0 ? (
             <Card>
               <CardContent className="p-8 md:p-12">
-                <div className="text-center text-gray-500">
-                  <Users className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3 md:mb-4 text-gray-400" />
+                <div className="text-center text-muted-foreground">
+                  <Users className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3 md:mb-4 text-muted-foreground" />
                   <p className="text-sm md:text-base mb-2">No candidates available for review</p>
-                  <p className="text-xs md:text-sm text-gray-400">
+                  <p className="text-xs md:text-sm text-muted-foreground">
                     {candidateSearchQuery || candidateFilter !== 'all'
                       ? 'Try adjusting your filters'
                       : 'Candidates will appear here after being shortlisted'}
@@ -1472,29 +1472,29 @@ export default function ManagerDashboard({ user }) {
                           className="w-12 h-12 md:w-16 md:h-16 rounded-full flex-shrink-0" 
                         />
                         <div className="min-w-0 flex-1">
-                          <h3 className="text-sm md:text-base font-semibold text-gray-900 mb-1 truncate">
+                          <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 truncate">
                             {candidate.applicant?.firstName} {candidate.applicant?.lastName}
                           </h3>
-                          <p className="text-xs md:text-sm text-gray-600 truncate">{candidate.job?.title || 'Position'}</p>
-                          <p className="text-xs text-gray-500">Applied {formatDate(candidate.createdAt)}</p>
+                          <p className="text-xs md:text-sm text-muted-foreground truncate">{candidate.job?.title || 'Position'}</p>
+                          <p className="text-xs text-muted-foreground">Applied {formatDate(candidate.createdAt)}</p>
                         </div>
                       </div>
                       {candidate.aiMatchScore !== undefined && (
                         <div className="text-right flex-shrink-0">
                           <div className="text-xs md:text-sm text-green-600 mb-1">Match</div>
-                          <div className="text-lg md:text-xl font-bold text-gray-900">{Math.round(candidate.aiMatchScore)}%</div>
+                          <div className="text-lg md:text-xl font-bold text-foreground">{Math.round(candidate.aiMatchScore)}%</div>
                         </div>
                       )}
                     </div>
 
                     {/* Contact Info */}
                     <div className="mb-4 space-y-2">
-                      <div className="flex items-center gap-2 text-xs md:text-sm text-gray-600">
+                      <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground">
                         <Mail className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
                         <span className="truncate">{candidate.applicant?.email}</span>
                       </div>
                       {candidate.applicant?.phone && (
-                        <div className="flex items-center gap-2 text-xs md:text-sm text-gray-600">
+                        <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground">
                           <Phone className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
                           <span>{candidate.applicant.phone}</span>
                         </div>
@@ -1504,7 +1504,7 @@ export default function ManagerDashboard({ user }) {
                     {/* Skills */}
                     {candidate.applicant?.skills && candidate.applicant.skills.length > 0 && (
                       <div className="mb-4">
-                        <p className="text-xs md:text-sm text-gray-600 mb-2">Key Skills:</p>
+                        <p className="text-xs md:text-sm text-muted-foreground mb-2">Key Skills:</p>
                         <div className="flex flex-wrap gap-1.5 md:gap-2">
                           {candidate.applicant.skills.slice(0, 5).map((skill, index) => (
                             <Badge key={index} variant="secondary" className="text-xs">{skill}</Badge>
@@ -1632,8 +1632,8 @@ export default function ManagerDashboard({ user }) {
           {/* Header - Mobile Responsive */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-1">Pending Approvals</h1>
-              <p className="text-sm md:text-base text-gray-600">Review and approve hiring decisions</p>
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-1">Pending Approvals</h1>
+              <p className="text-sm md:text-base text-muted-foreground">Review and approve hiring decisions</p>
             </div>
             <Button onClick={fetchApprovals} variant="outline" className="w-full sm:w-auto">
               <RefreshCw className="h-4 w-4 mr-2" />
@@ -1647,7 +1647,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4 md:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs md:text-sm text-gray-600 mb-1">Pending Approvals</p>
+                    <p className="text-xs md:text-sm text-muted-foreground mb-1">Pending Approvals</p>
                     <p className="text-xl md:text-2xl font-bold">{approvals.length}</p>
                   </div>
                   <Clock className="h-8 w-8 text-orange-600" />
@@ -1658,7 +1658,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4 md:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs md:text-sm text-gray-600 mb-1">Offers Extended</p>
+                    <p className="text-xs md:text-sm text-muted-foreground mb-1">Offers Extended</p>
                     <p className="text-xl md:text-2xl font-bold">{approvals.length}</p>
                   </div>
                   <FileText className="h-8 w-8 text-blue-600" />
@@ -1669,7 +1669,7 @@ export default function ManagerDashboard({ user }) {
               <CardContent className="p-4 md:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs md:text-sm text-gray-600 mb-1">Awaiting Decision</p>
+                    <p className="text-xs md:text-sm text-muted-foreground mb-1">Awaiting Decision</p>
                     <p className="text-xl md:text-2xl font-bold">{approvals.length}</p>
                   </div>
                   <CheckCircle className="h-8 w-8 text-green-600" />
@@ -1683,18 +1683,18 @@ export default function ManagerDashboard({ user }) {
             <Card>
               <CardContent className="p-12">
                 <div className="flex items-center justify-center">
-                  <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
-                  <span className="ml-3 text-gray-600">Loading approvals...</span>
+                  <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                  <span className="ml-3 text-muted-foreground">Loading approvals...</span>
                 </div>
               </CardContent>
             </Card>
           ) : approvals.length === 0 ? (
             <Card>
               <CardContent className="p-8 md:p-12">
-                <div className="text-center text-gray-500">
-                  <CheckCircle className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3 md:mb-4 text-gray-400" />
+                <div className="text-center text-muted-foreground">
+                  <CheckCircle className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3 md:mb-4 text-muted-foreground" />
                   <p className="text-sm md:text-base mb-2">No pending approvals</p>
-                  <p className="text-xs md:text-sm text-gray-400">
+                  <p className="text-xs md:text-sm text-muted-foreground">
                     All offers have been reviewed
                   </p>
                 </div>
@@ -1716,23 +1716,23 @@ export default function ManagerDashboard({ user }) {
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-2 mb-2">
                             <Badge className="text-xs bg-orange-600">Offer Extended</Badge>
-                            <h3 className="text-base md:text-lg font-semibold text-gray-900 truncate">
+                            <h3 className="text-base md:text-lg font-semibold text-foreground truncate">
                               {approval.applicant?.firstName} {approval.applicant?.lastName}
                             </h3>
                           </div>
                           
                           {/* Position */}
                           <div className="mb-3">
-                            <p className="text-sm md:text-base text-gray-700 font-medium">
+                            <p className="text-sm md:text-base text-foreground font-medium">
                               {approval.job?.title || 'Position not specified'}
                             </p>
-                            <p className="text-xs md:text-sm text-gray-500">
+                            <p className="text-xs md:text-sm text-muted-foreground">
                               {approval.job?.department || 'Department'} • {approval.job?.location || 'Location'}
                             </p>
                           </div>
 
                           {/* Details Grid */}
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs md:text-sm text-gray-600">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs md:text-sm text-muted-foreground">
                             <div className="flex items-center gap-1.5">
                               <Mail className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
                               <span className="truncate">{approval.applicant?.email}</span>
@@ -1757,7 +1757,7 @@ export default function ManagerDashboard({ user }) {
 
                           {/* Notes if any */}
                           {approval.notes && (
-                            <div className="mt-3 p-2 bg-gray-50 rounded text-xs md:text-sm text-gray-700">
+                            <div className="mt-3 p-2 bg-muted/50 rounded text-xs md:text-sm text-foreground">
                               <p className="font-medium mb-1">Notes:</p>
                               <p className="line-clamp-2">{approval.notes}</p>
                             </div>
@@ -1823,18 +1823,18 @@ export default function ManagerDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Attendance & Leaves Control</h1>
-              <p className="text-sm md:text-base text-gray-600">
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Attendance & Leaves Control</h1>
+              <p className="text-sm md:text-base text-muted-foreground">
                 Review pending leaves and inspect daily shift logs for {user.department || 'your department'}
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-600 font-medium">Select Date:</span>
+              <span className="text-sm text-muted-foreground font-medium">Select Date:</span>
               <Input
                 type="date"
                 value={attendanceDate}
                 onChange={(e) => setAttendanceDate(e.target.value)}
-                className="w-auto bg-white"
+                className="w-auto bg-background"
               />
             </div>
           </div>
@@ -1861,9 +1861,9 @@ export default function ManagerDashboard({ user }) {
                 ? pendingLeaves.filter(l => l.department?.toLowerCase() === user.department?.toLowerCase()) 
                 : pendingLeaves).length === 0 ? (
                 <Card>
-                  <CardContent className="p-12 text-center text-gray-500">
+                  <CardContent className="p-12 text-center text-muted-foreground">
                     <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">All Caught Up!</h3>
+                    <h3 className="text-lg font-semibold text-foreground mb-1">All Caught Up!</h3>
                     <p className="text-sm">There are no pending leave requests to review in your department.</p>
                   </CardContent>
                 </Card>
@@ -1876,8 +1876,8 @@ export default function ManagerDashboard({ user }) {
                       <CardHeader className="bg-green-50/50 p-4 border-b">
                         <div className="flex items-center justify-between">
                           <div>
-                            <h3 className="font-bold text-gray-900">{leave.firstName} {leave.lastName}</h3>
-                            <p className="text-xs text-gray-500">{leave.email} • {leave.department || 'No Dept'}</p>
+                            <h3 className="font-bold text-foreground">{leave.firstName} {leave.lastName}</h3>
+                            <p className="text-xs text-muted-foreground">{leave.email} • {leave.department || 'No Dept'}</p>
                           </div>
                           <Badge className="bg-green-100 text-green-800 border-green-200 border">
                             {leave.type} Leave
@@ -1887,14 +1887,14 @@ export default function ManagerDashboard({ user }) {
                       <CardContent className="p-6 space-y-4">
                         <div className="space-y-2 text-sm">
                           <div className="flex justify-between">
-                            <span className="text-gray-500">Duration:</span>
-                            <span className="font-medium text-gray-800">
+                            <span className="text-muted-foreground">Duration:</span>
+                            <span className="font-medium text-foreground">
                               {new Date(leave.startDate).toLocaleDateString()} to {new Date(leave.endDate).toLocaleDateString()}
                             </span>
                           </div>
                           <div className="space-y-1 pt-2">
-                            <span className="text-gray-500 block">Reason:</span>
-                            <p className="p-3 bg-gray-50 rounded-lg text-gray-700 italic border">
+                            <span className="text-muted-foreground block">Reason:</span>
+                            <p className="p-3 bg-muted/50 rounded-lg text-foreground italic border">
                               "{leave.reason}"
                             </p>
                           </div>
@@ -1931,13 +1931,13 @@ export default function ManagerDashboard({ user }) {
                       <Loader2 className="h-8 w-8 animate-spin text-green-600" />
                     </div>
                   ) : dailyAttendance.length === 0 ? (
-                    <div className="text-center py-12 text-gray-500">
+                    <div className="text-center py-12 text-muted-foreground">
                       No daily shift logs recorded for {attendanceDate}.
                     </div>
                   ) : (
                     <div className="overflow-x-auto">
-                      <table className="w-full text-sm text-left text-gray-600">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                      <table className="w-full text-sm text-left text-muted-foreground">
+                        <thead className="text-xs text-foreground uppercase bg-muted/50">
                           <tr>
                             <th className="px-4 py-3">Employee</th>
                             <th className="px-4 py-3">Department</th>
@@ -1950,10 +1950,10 @@ export default function ManagerDashboard({ user }) {
                         </thead>
                         <tbody>
                           {dailyAttendance.map((log) => (
-                            <tr key={log._id} className="bg-white border-b hover:bg-gray-50">
-                              <td className="px-4 py-3 font-semibold text-gray-900">
+                            <tr key={log._id} className="bg-card border-b border-border hover:bg-muted/50">
+                              <td className="px-4 py-3 font-semibold text-foreground">
                                 {log.user?.firstName} {log.user?.lastName}
-                                <span className="block text-xs text-gray-400 font-normal">{log.user?.position || 'Employee'}</span>
+                                <span className="block text-xs text-muted-foreground font-normal">{log.user?.position || 'Employee'}</span>
                               </td>
                               <td className="px-4 py-3">{log.user?.department || 'N/A'}</td>
                               <td className="px-4 py-3">

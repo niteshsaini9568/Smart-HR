@@ -1324,7 +1324,7 @@ export default function AdminDashboard({ user }) {
       header: 'Actions', 
       accessor: (row) => (
         <DropdownMenu>
-          <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 px-2 rounded-md hover:bg-gray-100 transition-colors">
+          <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 px-2 rounded-md hover:bg-muted transition-colors">
             <MoreVertical className="h-4 w-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -1374,7 +1374,7 @@ export default function AdminDashboard({ user }) {
       header: 'Actions', 
       accessor: (row) => (
         <DropdownMenu>
-          <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 px-2 rounded-md hover:bg-gray-100 transition-colors">
+          <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 px-2 rounded-md hover:bg-muted transition-colors">
             <MoreVertical className="h-4 w-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -1515,11 +1515,11 @@ export default function AdminDashboard({ user }) {
                       }`} />
                       <span className="text-sm">{log.action}</span>
                     </div>
-                    <span className="text-xs text-gray-500">{log.time}</span>
+                    <span className="text-xs text-muted-foreground">{log.time}</span>
                   </div>
                 ))}
                 {recentLogs.length === 0 && (
-                  <div className="text-center py-4 text-gray-500">
+                  <div className="text-center py-4 text-muted-foreground">
                     No recent activity
                   </div>
                 )}
@@ -1533,8 +1533,8 @@ export default function AdminDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">User Management</h1>
-              <p className="text-sm sm:text-base text-gray-600">Manage system users and permissions</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">User Management</h1>
+              <p className="text-sm sm:text-base text-muted-foreground">Manage system users and permissions</p>
             </div>
             <Button onClick={() => setIsCreateUserOpen(true)} className="w-full sm:w-auto">
               <Users className="h-4 w-4 mr-2" />
@@ -1739,8 +1739,8 @@ export default function AdminDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Job Management</h1>
-              <p className="text-sm sm:text-base text-gray-600">Manage job postings and openings</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">Job Management</h1>
+              <p className="text-sm sm:text-base text-muted-foreground">Manage job postings and openings</p>
             </div>
             <Button onClick={() => setIsCreateJobOpen(true)} className="w-full sm:w-auto">
               <Briefcase className="h-4 w-4 mr-2" />
@@ -1794,7 +1794,7 @@ export default function AdminDashboard({ user }) {
                   Clear Filters
                 </Button>
               </div>
-              <div className="mt-4 text-sm text-gray-600">
+              <div className="mt-4 text-sm text-muted-foreground">
                 Showing {filteredJobs.length} of {jobs.length} jobs
               </div>
             </CardContent>
@@ -2134,8 +2134,8 @@ export default function AdminDashboard({ user }) {
                 <DashboardLoading message="Loading jobs..." />
               ) : filteredJobs.length === 0 ? (
                 <div className="text-center py-12">
-                  <Briefcase className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-600">No jobs found matching your filters</p>
+                  <Briefcase className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                  <p className="text-muted-foreground">No jobs found matching your filters</p>
                   <Button 
                     variant="outline" 
                     className="mt-4"
@@ -2155,11 +2155,11 @@ export default function AdminDashboard({ user }) {
                       <div key={job._id} className="border rounded-lg p-4 space-y-3">
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <h3 className="font-semibold text-gray-900">{job.title}</h3>
-                            <p className="text-sm text-gray-600">{job.department}</p>
+                            <h3 className="font-semibold text-foreground">{job.title}</h3>
+                            <p className="text-sm text-muted-foreground">{job.department}</p>
                           </div>
                           <DropdownMenu>
-                            <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-gray-100 transition-colors">
+                            <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-muted transition-colors">
                               <MoreVertical className="h-4 w-4" />
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
@@ -2180,17 +2180,17 @@ export default function AdminDashboard({ user }) {
                         </div>
                         <div className="grid grid-cols-2 gap-2 text-sm">
                           <div>
-                            <span className="text-gray-500">Location:</span>
+                            <span className="text-muted-foreground">Location:</span>
                             <p className="font-medium">{job.location}</p>
                           </div>
                           <div>
-                            <span className="text-gray-500">Type:</span>
+                            <span className="text-muted-foreground">Type:</span>
                             <div className="mt-1">
                               <Badge variant="outline">{job.employmentType}</Badge>
                             </div>
                           </div>
                           <div>
-                            <span className="text-gray-500">Status:</span>
+                            <span className="text-muted-foreground">Status:</span>
                             <div className="mt-1">
                               <Badge variant={job.status === 'open' ? 'default' : 'secondary'}>
                                 {job.status}
@@ -2198,7 +2198,7 @@ export default function AdminDashboard({ user }) {
                             </div>
                           </div>
                           <div>
-                            <span className="text-gray-500">Applications:</span>
+                            <span className="text-muted-foreground">Applications:</span>
                             <p className="font-medium">{job.applicationsCount || 0}</p>
                           </div>
                         </div>
@@ -2226,8 +2226,8 @@ export default function AdminDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Analytics</h1>
-              <p className="text-sm sm:text-base text-gray-600">System-wide metrics and insights</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">Analytics</h1>
+              <p className="text-sm sm:text-base text-muted-foreground">System-wide metrics and insights</p>
             </div>
           </div>
 
@@ -2235,13 +2235,13 @@ export default function AdminDashboard({ user }) {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Card>
               <CardContent className="pt-6">
-                <div className="text-sm text-gray-500">Total Applications</div>
+                <div className="text-sm text-muted-foreground">Total Applications</div>
                 <div className="mt-1 text-2xl font-semibold">{totalApplicationsAllTime}</div>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-6">
-                <div className="text-sm text-gray-500">Pending</div>
+                <div className="text-sm text-muted-foreground">Pending</div>
                 <div className="mt-1 text-2xl font-semibold">{pendingCount}</div>
               </CardContent>
             </Card>
@@ -2249,7 +2249,7 @@ export default function AdminDashboard({ user }) {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-sm text-gray-500">Interview Rate</div>
+                    <div className="text-sm text-muted-foreground">Interview Rate</div>
                     <div className="mt-1 text-2xl font-semibold">{interviewRate}%</div>
                   </div>
                   <div className="w-24">
@@ -2266,7 +2266,7 @@ export default function AdminDashboard({ user }) {
                 <div className="flex items-center justify-between">
                   <CardTitle>Monthly Applications</CardTitle>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-600">Range</span>
+                    <span className="text-sm text-muted-foreground">Range</span>
                     <Select value={String(analyticsRange)} onValueChange={(v) => setAnalyticsRange(parseInt(v, 10))}>
                       <SelectTrigger className="w-28">
                         <SelectValue placeholder="Range" />
@@ -2310,7 +2310,7 @@ export default function AdminDashboard({ user }) {
                           <div className={`w-3 h-3 rounded-full ${colors[index % colors.length]}`} />
                           <span>{dept._id || 'Unknown'}</span>
                         </div>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-muted-foreground">
                           <div className="flex items-center gap-3">
                             <div className="w-40"><Progress value={pct} /></div>
                             <span>{open} open • {total} total</span>
@@ -2320,7 +2320,7 @@ export default function AdminDashboard({ user }) {
                     );
                   })}
                   {(!dashboardData?.jobsByDepartment || dashboardData.jobsByDepartment.length === 0) && (
-                    <div className="text-center py-4 text-gray-500">
+                    <div className="text-center py-4 text-muted-foreground">
                       No department data available
                     </div>
                   )}
@@ -2363,8 +2363,8 @@ export default function AdminDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">System Logs</h1>
-              <p className="text-sm sm:text-base text-gray-600">View system activity and audit logs</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">System Logs</h1>
+              <p className="text-sm sm:text-base text-muted-foreground">View system activity and audit logs</p>
             </div>
             {selectedLogs.length > 0 && (
               <Button 
@@ -2406,7 +2406,7 @@ export default function AdminDashboard({ user }) {
                 </Button>
               </div>
               {/* Show count text only on mobile, desktop DataTable has its own pagination info */}
-              <div className="mt-4 text-sm text-gray-600 md:hidden">
+              <div className="mt-4 text-sm text-muted-foreground md:hidden">
                 {filteredLogs.length > 0 ? (
                   <>
                     Showing {Math.min((logsPage - 1) * logsPerPage + 1, filteredLogs.length)} - {Math.min(logsPage * logsPerPage, filteredLogs.length)} of {filteredLogs.length} logs
@@ -2424,8 +2424,8 @@ export default function AdminDashboard({ user }) {
                 <DashboardLoading message="Loading logs..." />
               ) : filteredLogs.length === 0 ? (
                 <div className="text-center py-12">
-                  <ScrollText className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-600">No logs found matching your filters</p>
+                  <ScrollText className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                  <p className="text-muted-foreground">No logs found matching your filters</p>
                   <Button 
                     variant="outline" 
                     className="mt-4"
@@ -2454,7 +2454,7 @@ export default function AdminDashboard({ user }) {
                     )}
                     <div className="space-y-3">
                       {paginatedLogs.map((log) => (
-                        <div key={log._id} className="border rounded-lg p-4 space-y-3 bg-white shadow-sm">
+                        <div key={log._id} className="border border-border rounded-lg p-4 space-y-3 bg-card shadow-sm">
                           <div className="flex items-center gap-3">
                             <input
                               type="checkbox"
@@ -2470,32 +2470,32 @@ export default function AdminDashboard({ user }) {
                               } className="font-semibold">
                                 {log.level.toUpperCase()}
                               </Badge>
-                              <span className="text-xs text-gray-500 whitespace-nowrap">
+                              <span className="text-xs text-muted-foreground whitespace-nowrap">
                                 {getTimeAgo(log.createdAt)}
                               </span>
                             </div>
                           </div>
                           <div className="space-y-2 ml-7">
-                            <p className="text-sm font-medium text-gray-900 break-words">
+                            <p className="text-sm font-medium text-foreground break-words">
                               {log.action || log.message}
                             </p>
                             {log.details && (
-                              <p className="text-xs text-gray-500 break-words">
+                              <p className="text-xs text-muted-foreground break-words">
                                 {log.details}
                               </p>
                             )}
                           </div>
                           <div className="flex items-center justify-between text-xs border-t pt-2 ml-7">
-                            <div className="flex items-center gap-1 text-gray-600">
+                            <div className="flex items-center gap-1 text-muted-foreground">
                               {log.user ? (
                                 <span className="truncate">
                                   👤 {log.user.firstName} {log.user.lastName}
                                 </span>
                               ) : (
-                                <span className="text-gray-400">⚙️ System</span>
+                                <span className="text-muted-foreground">⚙️ System</span>
                               )}
                             </div>
-                            <div className="text-gray-500 whitespace-nowrap">
+                            <div className="text-muted-foreground whitespace-nowrap">
                               {new Date(log.createdAt).toLocaleTimeString([], { 
                                 hour: '2-digit', 
                                 minute: '2-digit' 
@@ -2517,7 +2517,7 @@ export default function AdminDashboard({ user }) {
                         >
                           Previous
                         </Button>
-                        <span className="text-sm text-gray-600">
+                        <span className="text-sm text-muted-foreground">
                           Page {logsPage} of {totalLogsPages}
                         </span>
                         <Button
@@ -2581,7 +2581,7 @@ export default function AdminDashboard({ user }) {
                             <div>
                               <div className="font-medium">{row.action || row.message}</div>
                               {row.details && (
-                                <div className="text-sm text-gray-500">{row.details}</div>
+                                <div className="text-sm text-muted-foreground">{row.details}</div>
                               )}
                             </div>
                           )
@@ -2592,10 +2592,10 @@ export default function AdminDashboard({ user }) {
                             row.user ? (
                               <div>
                                 <div>{row.user.firstName} {row.user.lastName}</div>
-                                <div className="text-sm text-gray-500">{row.user.email}</div>
+                                <div className="text-sm text-muted-foreground">{row.user.email}</div>
                               </div>
                             ) : (
-                              <span className="text-gray-400">System</span>
+                              <span className="text-muted-foreground">System</span>
                             )
                           )
                         },
@@ -2604,7 +2604,7 @@ export default function AdminDashboard({ user }) {
                           accessor: (row) => (
                             <div>
                               <div>{new Date(row.createdAt).toLocaleDateString()}</div>
-                              <div className="text-sm text-gray-500">
+                              <div className="text-sm text-muted-foreground">
                                 {new Date(row.createdAt).toLocaleTimeString()}
                               </div>
                             </div>
@@ -2613,7 +2613,7 @@ export default function AdminDashboard({ user }) {
                         { 
                           header: 'Time Ago', 
                           accessor: (row) => (
-                            <span className="text-sm text-gray-600">{getTimeAgo(row.createdAt)}</span>
+                            <span className="text-sm text-muted-foreground">{getTimeAgo(row.createdAt)}</span>
                           )
                         },
                       ]}
@@ -2623,7 +2623,7 @@ export default function AdminDashboard({ user }) {
                     {/* Desktop Pagination */}
                     {totalLogsPages > 1 && (
                       <div className="mt-4 flex items-center justify-between border-t pt-4">
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-muted-foreground">
                           Showing {Math.min((logsPage - 1) * logsPerPage + 1, filteredLogs.length)} - {Math.min(logsPage * logsPerPage, filteredLogs.length)} of {filteredLogs.length} logs
                         </div>
                         <div className="flex items-center gap-2">
@@ -2635,7 +2635,7 @@ export default function AdminDashboard({ user }) {
                           >
                             Previous
                           </Button>
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Page {logsPage} of {totalLogsPages}
                           </span>
                           <Button
@@ -2661,8 +2661,8 @@ export default function AdminDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">All Notifications</h1>
-              <p className="text-sm sm:text-base text-gray-600">View and manage all your notifications</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">All Notifications</h1>
+              <p className="text-sm sm:text-base text-muted-foreground">View and manage all your notifications</p>
             </div>
             <Button 
               variant="outline" 
@@ -2677,8 +2677,8 @@ export default function AdminDashboard({ user }) {
             <CardContent className="pt-6">
               {notifications.length === 0 ? (
                 <div className="text-center py-12">
-                  <Bell className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-600">No notifications to display</p>
+                  <Bell className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                  <p className="text-muted-foreground">No notifications to display</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -2686,8 +2686,8 @@ export default function AdminDashboard({ user }) {
                     <div
                       key={notification.id}
                       onClick={() => handleNotificationClick(notification)}
-                      className={`p-4 rounded-lg border cursor-pointer hover:bg-gray-50 transition-colors ${
-                        !notification.read ? 'bg-blue-50 border-blue-200' : 'bg-white border-gray-200'
+                      className={`p-4 rounded-lg border cursor-pointer hover:bg-muted/50 transition-colors ${
+                        !notification.read ? 'bg-blue-500/10 border-blue-500/30' : 'bg-card border-border'
                       }`}
                     >
                       <div className="flex items-start gap-3">
@@ -2719,11 +2719,11 @@ export default function AdminDashboard({ user }) {
                           )}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className={`text-base ${!notification.read ? 'font-semibold text-gray-900' : 'text-gray-700'}`}>
+                          <p className={`text-base ${!notification.read ? 'font-semibold text-foreground' : 'text-foreground'}`}>
                             {notification.message}
                           </p>
                           <div className="flex items-center gap-2 mt-2">
-                            <p className="text-sm text-gray-500">{notification.time}</p>
+                            <p className="text-sm text-muted-foreground">{notification.time}</p>
                             {!notification.read && (
                               <Badge variant="default" className="text-xs">New</Badge>
                             )}
@@ -2743,7 +2743,7 @@ export default function AdminDashboard({ user }) {
               {/* Notifications Pagination */}
               {notifications.length > 0 && (
                 <div className="mt-4 flex items-center justify-between border-t pt-4">
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-muted-foreground">
                     Showing {Math.min((notificationsPage - 1) * notificationsPerPage + 1, notifications.length)} - {Math.min(notificationsPage * notificationsPerPage, notifications.length)} of {notifications.length} notifications
                   </div>
                   <div className="flex items-center gap-2">
@@ -2755,7 +2755,7 @@ export default function AdminDashboard({ user }) {
                     >
                       Previous
                     </Button>
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm text-muted-foreground">
                       Page {notificationsPage} of {totalNotificationsPages}
                     </span>
                     <Button
@@ -2778,8 +2778,8 @@ export default function AdminDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Settings</h1>
-              <p className="text-sm sm:text-base text-gray-600">Manage your account settings and preferences</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">Settings</h1>
+              <p className="text-sm sm:text-base text-muted-foreground">Manage your account settings and preferences</p>
             </div>
           </div>
 
@@ -2821,12 +2821,12 @@ export default function AdminDashboard({ user }) {
                   />
                 </div>
                 <div>
-                  <Label className="text-gray-500">Role</Label>
+                  <Label className="text-muted-foreground">Role</Label>
                   <p className="font-medium capitalize">{currentUser?.role?.replace('_', ' ')}</p>
                 </div>
                 {currentUser?.department && (
                   <div>
-                    <Label className="text-gray-500">Department</Label>
+                    <Label className="text-muted-foreground">Department</Label>
                     <p className="font-medium">{currentUser.department}</p>
                   </div>
                 )}
@@ -2865,7 +2865,7 @@ export default function AdminDashboard({ user }) {
                     onChange={(e) => handleProfileChange('newPassword', e.target.value)}
                     placeholder="••••••••"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Must be at least 6 characters</p>
+                  <p className="text-xs text-muted-foreground mt-1">Must be at least 6 characters</p>
                 </div>
                 <div>
                   <Label htmlFor="confirmPassword">Confirm New Password *</Label>
@@ -2895,11 +2895,11 @@ export default function AdminDashboard({ user }) {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label className="text-gray-500">User ID</Label>
+                  <Label className="text-muted-foreground">User ID</Label>
                   <p className="font-mono text-sm">{currentUser?._id || currentUser?.id || 'N/A'}</p>
                 </div>
                 <div>
-                  <Label className="text-gray-500">Account Status</Label>
+                  <Label className="text-muted-foreground">Account Status</Label>
                   <div className="mt-1">
                     <Badge variant={currentUser?.isActive ? 'default' : 'destructive'}>
                       {currentUser?.isActive ? 'Active' : 'Inactive'}
@@ -2907,13 +2907,13 @@ export default function AdminDashboard({ user }) {
                   </div>
                 </div>
                 <div>
-                  <Label className="text-gray-500">Created At</Label>
+                  <Label className="text-muted-foreground">Created At</Label>
                   <p className="text-sm">
                     {currentUser?.createdAt ? new Date(currentUser.createdAt).toLocaleDateString() : 'N/A'}
                   </p>
                 </div>
                 <div>
-                  <Label className="text-gray-500">Last Updated</Label>
+                  <Label className="text-muted-foreground">Last Updated</Label>
                   <p className="text-sm">
                     {currentUser?.updatedAt ? new Date(currentUser.updatedAt).toLocaleDateString() : 'N/A'}
                   </p>
@@ -2930,25 +2930,25 @@ export default function AdminDashboard({ user }) {
                 <div className="space-y-2">
                   <Label>Notifications</Label>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Email Notifications</span>
+                    <span className="text-sm text-muted-foreground">Email Notifications</span>
                     <Badge variant="secondary">Enabled</Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Browser Notifications</span>
+                    <span className="text-sm text-muted-foreground">Browser Notifications</span>
                     <Badge variant="secondary">Enabled</Badge>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <Label>Privacy</Label>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Profile Visibility</span>
+                    <span className="text-sm text-muted-foreground">Profile Visibility</span>
                     <Badge variant="secondary">Internal</Badge>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <Label>Session</Label>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Auto Logout</span>
+                    <span className="text-sm text-muted-foreground">Auto Logout</span>
                     <Badge variant="secondary">30 minutes</Badge>
                   </div>
                 </div>
@@ -2962,8 +2962,8 @@ export default function AdminDashboard({ user }) {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Application Management</h1>
-              <p className="text-sm sm:text-base text-gray-600">Manage and review job applications</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">Application Management</h1>
+              <p className="text-sm sm:text-base text-muted-foreground">Manage and review job applications</p>
             </div>
           </div>
 
@@ -2999,7 +2999,7 @@ export default function AdminDashboard({ user }) {
                   Clear Filters
                 </Button>
               </div>
-              <div className="mt-4 text-sm text-gray-600">
+              <div className="mt-4 text-sm text-muted-foreground">
                 Showing {filteredApplications.length} of {applications.length} applications
               </div>
             </CardContent>
@@ -3016,34 +3016,34 @@ export default function AdminDashboard({ user }) {
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <Label className="text-gray-500">Applicant Name</Label>
+                      <Label className="text-muted-foreground">Applicant Name</Label>
                       <p className="font-medium">
                         {selectedApplication.applicant?.firstName} {selectedApplication.applicant?.lastName}
                       </p>
                     </div>
                     <div>
-                      <Label className="text-gray-500">Email</Label>
+                      <Label className="text-muted-foreground">Email</Label>
                       <p className="font-medium">{selectedApplication.applicant?.email}</p>
                     </div>
                     <div>
-                      <Label className="text-gray-500">Job Position</Label>
+                      <Label className="text-muted-foreground">Job Position</Label>
                       <p className="font-medium">{selectedApplication.job?.title}</p>
                     </div>
                     <div>
-                      <Label className="text-gray-500">Applied Date</Label>
+                      <Label className="text-muted-foreground">Applied Date</Label>
                       <p className="font-medium">
                         {new Date(selectedApplication.createdAt).toLocaleDateString()}
                       </p>
                     </div>
                     <div>
-                      <Label className="text-gray-500">Current Status</Label>
+                      <Label className="text-muted-foreground">Current Status</Label>
                       <div className="mt-1">
                         <Badge>{formatStatus(selectedApplication.status)}</Badge>
                       </div>
                     </div>
                     {selectedApplication.aiScore?.overallScore && (
                       <div>
-                        <Label className="text-gray-500">AI Score</Label>
+                        <Label className="text-muted-foreground">AI Score</Label>
                         <p className="font-medium">{selectedApplication.aiScore.overallScore}%</p>
                       </div>
                     )}
@@ -3051,8 +3051,8 @@ export default function AdminDashboard({ user }) {
 
                   {selectedApplication.coverLetter && (
                     <div>
-                      <Label className="text-gray-500">Cover Letter</Label>
-                      <p className="mt-2 text-sm text-gray-700 whitespace-pre-wrap">
+                      <Label className="text-muted-foreground">Cover Letter</Label>
+                      <p className="mt-2 text-sm text-foreground whitespace-pre-wrap">
                         {selectedApplication.coverLetter}
                       </p>
                     </div>
@@ -3090,8 +3090,8 @@ export default function AdminDashboard({ user }) {
                 <DashboardLoading message="Loading applications..." />
               ) : filteredApplications.length === 0 ? (
                 <div className="text-center py-12">
-                  <FileText className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-600">No applications found matching your filters</p>
+                  <FileText className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                  <p className="text-muted-foreground">No applications found matching your filters</p>
                   <Button 
                     variant="outline" 
                     className="mt-4"
@@ -3108,13 +3108,13 @@ export default function AdminDashboard({ user }) {
                       <div key={app._id} className="border rounded-lg p-4 space-y-3">
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <h3 className="font-semibold text-gray-900">
+                            <h3 className="font-semibold text-foreground">
                               {app.applicant?.firstName} {app.applicant?.lastName}
                             </h3>
-                            <p className="text-sm text-gray-600">{app.job?.title}</p>
+                            <p className="text-sm text-muted-foreground">{app.job?.title}</p>
                           </div>
                           <DropdownMenu>
-                            <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-gray-100 transition-colors">
+                            <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-muted transition-colors">
                               <MoreVertical className="h-4 w-4" />
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
@@ -3139,17 +3139,17 @@ export default function AdminDashboard({ user }) {
                         </div>
                         <div className="grid grid-cols-2 gap-2 text-sm">
                           <div>
-                            <span className="text-gray-500">Email:</span>
+                            <span className="text-muted-foreground">Email:</span>
                             <p className="font-medium truncate">{app.applicant?.email}</p>
                           </div>
                           <div>
-                            <span className="text-gray-500">Applied:</span>
+                            <span className="text-muted-foreground">Applied:</span>
                             <p className="font-medium">
                               {new Date(app.createdAt).toLocaleDateString()}
                             </p>
                           </div>
                           <div>
-                            <span className="text-gray-500">Status:</span>
+                            <span className="text-muted-foreground">Status:</span>
                             <div className="mt-1">
                               <Badge variant={
                                 app.status === 'accepted' ? 'default' : 
@@ -3162,7 +3162,7 @@ export default function AdminDashboard({ user }) {
                           </div>
                           {app.aiScore?.overallScore && (
                             <div>
-                              <span className="text-gray-500">AI Score:</span>
+                              <span className="text-muted-foreground">AI Score:</span>
                               <p className="font-medium">{app.aiScore.overallScore}%</p>
                             </div>
                           )}
@@ -3183,7 +3183,7 @@ export default function AdminDashboard({ user }) {
                               <div className="font-medium">
                                 {row.applicant?.firstName} {row.applicant?.lastName}
                               </div>
-                              <div className="text-sm text-gray-500">{row.applicant?.email}</div>
+                              <div className="text-sm text-muted-foreground">{row.applicant?.email}</div>
                             </div>
                           )
                         },
@@ -3219,7 +3219,7 @@ export default function AdminDashboard({ user }) {
                           header: 'Actions', 
                           accessor: (row) => (
                             <DropdownMenu>
-                              <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 px-2 rounded-md hover:bg-gray-100 transition-colors">
+                              <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 px-2 rounded-md hover:bg-muted transition-colors">
                                 <MoreVertical className="h-4 w-4" />
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">

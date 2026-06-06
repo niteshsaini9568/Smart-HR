@@ -194,7 +194,7 @@ export default function ProfileDialog({ isOpen, onClose }) {
     'employee': 'bg-green-100 text-green-800',
   };
 
-  const roleColor = roleColors[user.role?.toLowerCase()] || 'bg-gray-100 text-gray-800';
+  const roleColor = roleColors[user.role?.toLowerCase()] || 'bg-muted text-foreground';
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -220,9 +220,9 @@ export default function ProfileDialog({ isOpen, onClose }) {
                     className="absolute bottom-1 right-1 z-10 inline-flex items-center justify-center p-0 m-0 bg-transparent hover:bg-transparent"
                   >
                     {isUploadingAvatar ? (
-                      <Loader2 className="h-4 w-4 animate-spin text-gray-700" />
+                      <Loader2 className="h-4 w-4 animate-spin text-foreground" />
                     ) : (
-                      <Edit2 className="h-4 w-4 text-gray-700 hover:text-gray-900" />
+                      <Edit2 className="h-4 w-4 text-foreground hover:text-foreground" />
                     )}
                   </button>
                   <input
@@ -234,7 +234,7 @@ export default function ProfileDialog({ isOpen, onClose }) {
                   />
                 </div>
                 <div className="flex-1 text-center sm:text-left w-full min-w-0">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 break-words">
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 break-words">
                     {fullName}
                   </h3>
                   <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
@@ -281,7 +281,7 @@ export default function ProfileDialog({ isOpen, onClose }) {
                       />
                     ) : (
                       <div className="flex items-center gap-2 mt-1">
-                        <User className="h-4 w-4 text-gray-400 shrink-0" />
+                        <User className="h-4 w-4 text-muted-foreground shrink-0" />
                         <span className="text-sm sm:text-base break-words">{user.firstName}</span>
                       </div>
                     )}
@@ -298,7 +298,7 @@ export default function ProfileDialog({ isOpen, onClose }) {
                       />
                     ) : (
                       <div className="flex items-center gap-2 mt-1">
-                        <User className="h-4 w-4 text-gray-400 shrink-0" />
+                        <User className="h-4 w-4 text-muted-foreground shrink-0" />
                         <span className="text-sm sm:text-base break-words">{user.lastName}</span>
                       </div>
                     )}
@@ -308,10 +308,10 @@ export default function ProfileDialog({ isOpen, onClose }) {
                 <div>
                   <Label htmlFor="email" className="text-xs sm:text-sm">Email</Label>
                   <div className="flex items-center gap-2 mt-1">
-                    <Mail className="h-4 w-4 text-gray-400 shrink-0" />
+                    <Mail className="h-4 w-4 text-muted-foreground shrink-0" />
                     <span className="text-sm sm:text-base break-all">{user.email}</span>
                   </div>
-                  <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
+                  <p className="text-xs text-muted-foreground mt-1">Email cannot be changed</p>
                 </div>
 
                 <div>
@@ -327,7 +327,7 @@ export default function ProfileDialog({ isOpen, onClose }) {
                     />
                   ) : (
                     <div className="flex items-center gap-2 mt-1">
-                      <Phone className="h-4 w-4 text-gray-400 shrink-0" />
+                      <Phone className="h-4 w-4 text-muted-foreground shrink-0" />
                       <span className="text-sm sm:text-base">{user.phone || 'Not provided'}</span>
                     </div>
                   )}
@@ -346,7 +346,7 @@ export default function ProfileDialog({ isOpen, onClose }) {
                     />
                   ) : (
                     <div className="flex items-center gap-2 mt-1">
-                      <Briefcase className="h-4 w-4 text-gray-400 shrink-0" />
+                      <Briefcase className="h-4 w-4 text-muted-foreground shrink-0" />
                       <span className="text-sm sm:text-base break-words">{user.position || 'Not provided'}</span>
                     </div>
                   )}
@@ -365,7 +365,7 @@ export default function ProfileDialog({ isOpen, onClose }) {
                     />
                   ) : (
                     <div className="flex items-center gap-2 mt-1">
-                      <MapPin className="h-4 w-4 text-gray-400 shrink-0" />
+                      <MapPin className="h-4 w-4 text-muted-foreground shrink-0" />
                       <span className="text-sm sm:text-base break-words">{user.location || 'Not provided'}</span>
                     </div>
                   )}
@@ -375,7 +375,7 @@ export default function ProfileDialog({ isOpen, onClose }) {
                   <div>
                     <Label className="text-xs sm:text-sm">Member Since</Label>
                     <div className="flex items-center gap-2 mt-1">
-                      <Calendar className="h-4 w-4 text-gray-400 shrink-0" />
+                      <Calendar className="h-4 w-4 text-muted-foreground shrink-0" />
                       <span className="text-sm sm:text-base">
                         {new Date(user.createdAt).toLocaleDateString('en-US', { 
                           year: 'numeric', 
