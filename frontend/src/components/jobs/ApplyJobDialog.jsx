@@ -236,28 +236,28 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
         {success ? (
           <div className="py-8 sm:py-12 text-center">
             <CheckCircle className="h-12 w-12 sm:h-16 sm:w-16 text-green-600 mx-auto mb-3 sm:mb-4" />
-            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Application Submitted!</h3>
-            <p className="text-sm sm:text-base text-gray-600 px-4">
+            <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2">Application Submitted!</h3>
+            <p className="text-sm sm:text-base text-muted-foreground px-4">
               Your application has been successfully submitted. We'll review it and get back to you soon.
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             {/* Job Summary */}
-            <div className="bg-gray-50 rounded-lg p-3 sm:p-4 space-y-2">
-              <h4 className="font-semibold text-gray-900 text-sm sm:text-base">{job.title}</h4>
+            <div className="bg-muted/50 border border-border rounded-lg p-3 sm:p-4 space-y-2">
+              <h4 className="font-semibold text-foreground text-sm sm:text-base">{job.title}</h4>
               <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                <Badge variant="outline" className="text-xs">{job.department}</Badge>
-                <Badge variant="outline" className="text-xs">{job.employmentType}</Badge>
-                <Badge variant="outline" className="text-xs">{job.location}</Badge>
+                <Badge variant="secondary" className="text-xs">{job.department}</Badge>
+                <Badge variant="secondary" className="text-xs">{job.employmentType}</Badge>
+                <Badge variant="secondary" className="text-xs">{job.location}</Badge>
               </div>
             </div>
 
             {/* Already Applied Warning */}
             {alreadyApplied && (
-              <Alert className="bg-blue-50 border-blue-200">
-                <AlertCircle className="h-4 w-4 text-blue-600" />
-                <AlertDescription className="text-blue-800 text-xs sm:text-sm">
+              <Alert className="bg-blue-500/10 border-blue-500/30">
+                <AlertCircle className="h-4 w-4 text-blue-400" />
+                <AlertDescription className="text-foreground text-xs sm:text-sm">
                   <strong>You have already applied for this position.</strong> You can view your application status in the "My Applications" section.
                 </AlertDescription>
               </Alert>
@@ -280,7 +280,7 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
                   <Button
                     type="button"
                     variant="outline"
-                    className="w-full border-2 border-dashed hover:border-orange-500 hover:bg-orange-50 text-gray-700"
+                    className="w-full border-2 border-dashed hover:border-orange-500 hover:bg-orange-500/10 text-foreground"
                     onClick={() => setShowResumeSelector(true)}
                     disabled={loadingResumes}
                   >
@@ -301,7 +301,7 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
                       <span className="w-full border-t" />
                     </div>
                     <div className="relative flex justify-center text-xs uppercase">
-                      <span className="bg-white px-2 text-gray-500">Or upload a new resume</span>
+                      <span className="bg-background px-2 text-muted-foreground">Or upload a new resume</span>
                     </div>
                   </div>
                 </div>
@@ -311,7 +311,7 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
               {showResumeSelector && existingResumes.length > 0 && !uploadedResume && !selectedExistingResume && (
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <p className="text-xs sm:text-sm text-gray-600">Select from your uploaded resumes:</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Select from your uploaded resumes:</p>
                     <Button
                       type="button"
                       variant="ghost"
@@ -327,13 +327,13 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
                       <div
                         key={resume._id}
                         onClick={() => handleSelectExistingResume(resume)}
-                        className="border-2 border-gray-200 hover:border-orange-500 bg-white rounded-lg p-3 cursor-pointer transition-all"
+                        className="border-2 border-border hover:border-orange-500 bg-card rounded-lg p-3 cursor-pointer transition-all"
                       >
                         <div className="flex items-center gap-2">
-                          <FileText className="h-5 w-5 text-gray-600 flex-shrink-0" />
+                          <FileText className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">{resume.fileName}</p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-sm font-medium text-foreground truncate">{resume.fileName}</p>
+                            <p className="text-xs text-muted-foreground">
                               {new Date(resume.createdAt).toLocaleDateString()}
                             </p>
                           </div>
@@ -346,7 +346,7 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
                       <span className="w-full border-t" />
                     </div>
                     <div className="relative flex justify-center text-xs uppercase">
-                      <span className="bg-white px-2 text-gray-500">Or upload a new resume</span>
+                      <span className="bg-background px-2 text-muted-foreground">Or upload a new resume</span>
                     </div>
                   </div>
                 </div>
@@ -354,19 +354,19 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
 
               {/* Show selected existing resume */}
               {selectedExistingResume && !uploadedResume && (
-                <div className="border-2 border-blue-200 bg-blue-50 rounded-lg p-3 sm:p-4">
+                <div className="border-2 border-blue-500/30 bg-blue-500/10 rounded-lg p-3 sm:p-4">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                        <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                        <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs sm:text-sm font-medium text-gray-900 truncate">
+                        <p className="text-xs sm:text-sm font-medium text-foreground truncate">
                           {selectedExistingResume.fileName}
                         </p>
                         <div className="flex items-center gap-1 sm:gap-2 mt-0.5 sm:mt-1">
-                          <CheckCircle className="h-3 w-3 text-blue-600 flex-shrink-0" />
-                          <span className="text-xs text-blue-600">
+                          <CheckCircle className="h-3 w-3 text-blue-400 flex-shrink-0" />
+                          <span className="text-xs text-blue-400">
                             Resume selected
                           </span>
                         </div>
@@ -377,7 +377,7 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
                       variant="ghost"
                       size="sm"
                       onClick={handleRemoveFile}
-                      className="text-red-600 hover:text-red-700 hover:bg-red-50 flex-shrink-0"
+                      className="text-red-400 hover:text-red-300 hover:bg-red-500/10 flex-shrink-0"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
@@ -390,16 +390,16 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
                 <div 
                   className={`border-2 border-dashed rounded-lg p-4 sm:p-6 text-center transition-colors cursor-pointer ${
                     isDragging 
-                      ? 'border-orange-500 bg-orange-50' 
-                      : 'border-gray-300 hover:border-gray-400'
+                      ? 'border-orange-500 bg-orange-500/10' 
+                      : 'border-border hover:border-muted-foreground/50'
                   }`}
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
                   onClick={() => fileInputRef.current?.click()}
                 >
-                  <Upload className="h-8 w-8 sm:h-10 sm:w-10 text-gray-400 mx-auto mb-2 sm:mb-3" />
-                  <p className="text-xs sm:text-sm text-gray-600 mb-2">
+                  <Upload className="h-8 w-8 sm:h-10 sm:w-10 text-muted-foreground mx-auto mb-2 sm:mb-3" />
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-2">
                     Drag and drop your resume here, or click to browse
                   </p>
                   <Button 
@@ -414,7 +414,7 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
                   >
                     Browse Files
                   </Button>
-                  <p className="text-xs text-gray-500 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     PDF, DOC, or DOCX up to 10MB
                   </p>
                   <input
@@ -426,24 +426,24 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
                   />
                 </div>
               ) : isUploading ? (
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-6 text-center">
+                <div className="border-2 border-dashed border-border rounded-lg p-4 sm:p-6 text-center">
                   <Loader2 className="h-8 w-8 sm:h-10 sm:w-10 text-orange-600 mx-auto mb-2 sm:mb-3 animate-spin" />
-                  <p className="text-xs sm:text-sm text-gray-600">Uploading resume...</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Uploading resume...</p>
                 </div>
               ) : uploadedResume ? (
-                <div className="border-2 border-green-200 bg-green-50 rounded-lg p-3 sm:p-4">
+                <div className="border-2 border-green-500/30 bg-green-500/10 rounded-lg p-3 sm:p-4">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                        <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                        <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-green-400" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs sm:text-sm font-medium text-gray-900 truncate">
+                        <p className="text-xs sm:text-sm font-medium text-foreground truncate">
                           {selectedFile?.name || uploadedResume?.fileName}
                         </p>
                         <div className="flex items-center gap-1 sm:gap-2 mt-0.5 sm:mt-1">
-                          <CheckCircle className="h-3 w-3 text-green-600 flex-shrink-0" />
-                          <span className="text-xs text-green-600">
+                          <CheckCircle className="h-3 w-3 text-green-400 flex-shrink-0" />
+                          <span className="text-xs text-green-400">
                             Resume uploaded successfully
                           </span>
                         </div>
@@ -454,7 +454,7 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
                       variant="ghost"
                       size="sm"
                       onClick={handleRemoveFile}
-                      className="text-red-600 hover:text-red-700 hover:bg-red-50 flex-shrink-0"
+                      className="text-red-400 hover:text-red-300 hover:bg-red-500/10 flex-shrink-0"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
@@ -466,7 +466,7 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
             {/* Cover Letter */}
             <div className="space-y-2">
               <Label htmlFor="coverLetter" className="text-sm sm:text-base">
-                Cover Letter <span className="text-gray-500 text-xs sm:text-sm">(Optional)</span>
+                Cover Letter <span className="text-muted-foreground text-xs sm:text-sm">(Optional)</span>
               </Label>
               <Textarea
                 id="coverLetter"
@@ -476,7 +476,7 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
                 rows={4}
                 className="resize-none text-sm sm:text-base"
               />
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-muted-foreground">
                 {coverLetter.length} / 2000 characters
               </p>
             </div>
@@ -492,7 +492,7 @@ export default function ApplyJobDialog({ isOpen, onClose, job, onSuccess, existi
                     </Badge>
                   ))}
                 </div>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-foreground">
                   Make sure your resume highlights these skills
                 </p>
               </div>

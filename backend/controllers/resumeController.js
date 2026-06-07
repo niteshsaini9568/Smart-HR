@@ -2,8 +2,12 @@ const Resume = require('../models/Resume');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/asyncHandler');
 const { parseResume } = require('../services/resumeParserService');
-const { deleteFromCloudinary, uploadBufferToCloudinary } = require('../utils/cloudinary');
-const axios = require('axios');
+const {
+  deleteFromCloudinary,
+  uploadBufferToCloudinary,
+  downloadRawFileBuffer,
+  withSignedFileUrl,
+} = require('../utils/cloudinary');
 const path = require('path');
 const fs = require('fs').promises;
 const os = require('os');
@@ -61,7 +65,7 @@ exports.uploadResume = asyncHandler(async (req, res, next) => {
 
     res.status(201).json({
       success: true,
-      data: resume
+      data: withSignedFileUrl(resume)
     });
   } catch (error) {
     return next(new ErrorResponse('Failed to upload resume to cloud storage', 500));
@@ -87,7 +91,7 @@ exports.parseResumeById = asyncHandler(async (req, res, next) => {
     return res.status(200).json({
       success: true,
       message: 'Resume already parsed',
-      data: resume
+      data: withSignedFileUrl(resume)
     });
   }
 
@@ -96,17 +100,11 @@ exports.parseResumeById = asyncHandler(async (req, res, next) => {
     let filePath;
     
     if (resume.cloudinaryId) {
-      // Download file from Cloudinary URL
-      const response = await axios({
-        method: 'get',
-        url: resume.fileUrl,
-        responseType: 'arraybuffer'
-      });
+      const fileBuffer = await downloadRawFileBuffer(resume.cloudinaryId, resume.fileType);
 
-      // Save temporarily
       const tempDir = os.tmpdir();
       filePath = path.join(tempDir, resume.fileName);
-      await fs.writeFile(filePath, response.data);
+      await fs.writeFile(filePath, fileBuffer);
     } else {
       // Legacy local file path
       filePath = path.join(__dirname, '..', resume.fileUrl);
@@ -128,7 +126,7 @@ exports.parseResumeById = asyncHandler(async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      data: resume
+      data: withSignedFileUrl(resume)
     });
   } catch (error) {
     console.error('Resume parsing error:', error);
@@ -146,7 +144,7 @@ exports.getMyResumes = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     count: resumes.length,
-    data: resumes
+    data: resumes.map(withSignedFileUrl)
   });
 });
 
@@ -170,7 +168,7 @@ exports.getResume = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: resume
+    data: withSignedFileUrl(resume)
   });
 });
 
@@ -184,7 +182,7 @@ exports.getUserResumes = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     count: resumes.length,
-    data: resumes
+    data: resumes.map(withSignedFileUrl)
   });
 });
 

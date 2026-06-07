@@ -20,6 +20,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '../ui/pagination';
@@ -1665,9 +1666,9 @@ export default function EmployeeDashboard({ user }) {
                     </div>
 
                     <div>
-                      <label className="text-sm text-gray-600 block mb-1">Reason</label>
-                      <textarea
-                        className="w-full min-h-[80px] p-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+                      <label className="text-sm text-muted-foreground block mb-1">Reason</label>
+                      <Textarea
+                        className="min-h-[80px] focus-visible:ring-orange-500/50 focus-visible:border-orange-500"
                         placeholder="State your reason for leave..."
                         value={leaveReason}
                         onChange={(e) => setLeaveReason(e.target.value)}
@@ -1697,16 +1698,16 @@ export default function EmployeeDashboard({ user }) {
                   {loadingAttendance ? (
                     <div className="flex items-center justify-center py-12">
                       <Loader2 className="h-8 w-8 animate-spin text-orange-600" />
-                      <span className="ml-2 text-gray-600">Loading history...</span>
+                      <span className="ml-2 text-muted-foreground">Loading history...</span>
                     </div>
                   ) : attendanceHistory.length === 0 ? (
-                    <div className="text-center py-12 text-gray-500">
+                    <div className="text-center py-12 text-muted-foreground">
                       No attendance or leave logs found.
                     </div>
                   ) : (
-                    <div className="overflow-x-auto">
-                      <table className="w-full text-sm text-left text-gray-600">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                    <div className="overflow-x-auto rounded-lg border border-border">
+                      <table className="w-full text-sm text-left text-muted-foreground">
+                        <thead className="text-xs text-foreground uppercase bg-muted/50">
                           <tr>
                             <th className="px-4 py-3">Date</th>
                             <th className="px-4 py-3">Status</th>
@@ -1718,16 +1719,16 @@ export default function EmployeeDashboard({ user }) {
                         </thead>
                         <tbody>
                           {attendanceHistory.map((log) => (
-                            <tr key={log._id} className="bg-white border-b hover:bg-gray-50">
-                              <td className="px-4 py-3 font-semibold text-gray-900">{log.date}</td>
+                            <tr key={log._id} className="border-b border-border hover:bg-muted/30">
+                              <td className="px-4 py-3 font-semibold text-foreground">{log.date}</td>
                               <td className="px-4 py-3">
                                 <Badge className={`${
-                                  log.status === 'Present' ? 'bg-green-100 text-green-800' :
-                                  log.status === 'Late' ? 'bg-yellow-100 text-yellow-800' :
-                                  log.status === 'Half-Day' ? 'bg-orange-100 text-orange-800' :
-                                  log.status === 'On-Leave' ? 'bg-purple-100 text-purple-800' :
-                                  'bg-red-100 text-red-800'
-                                } px-2 py-0.5 text-xs`}>
+                                  log.status === 'Present' ? 'bg-green-100 text-green-800 border-green-200' :
+                                  log.status === 'Late' ? 'bg-yellow-100 text-yellow-800 border-yellow-200' :
+                                  log.status === 'Half-Day' ? 'bg-orange-100 text-orange-800 border-orange-200' :
+                                  log.status === 'On-Leave' ? 'bg-purple-100 text-purple-800 border-purple-200' :
+                                  'bg-red-100 text-red-800 border-red-200'
+                                } border px-2 py-0.5 text-xs`}>
                                   {log.status}
                                 </Badge>
                               </td>
@@ -1773,7 +1774,7 @@ export default function EmployeeDashboard({ user }) {
                       >
                         Previous
                       </Button>
-                      <span className="text-sm py-1.5 px-3 bg-gray-50 border rounded-lg">
+                      <span className="text-sm py-1.5 px-3 bg-muted/50 border border-border rounded-lg text-muted-foreground">
                         Page {historyPage} of {historyTotalPages}
                       </span>
                       <Button

@@ -2,6 +2,7 @@ const User = require('../models/User');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/asyncHandler');
 const sendEmail = require('../utils/sendEmail');
+const sendEmailInBackground = sendEmail.sendEmailInBackground;
 
 // @desc    Register user
 // @route   POST /api/v1/auth/register
@@ -25,9 +26,8 @@ exports.register = asyncHandler(async (req, res, next) => {
     phone
   });
 
-  // Send welcome email
-  try {
-    await sendEmail({
+  // Send welcome email (non-blocking — must not delay registration)
+  sendEmailInBackground({
       email: user.email,
       subject: 'Welcome to HRMS - Registration Successful',
       message: `Hi ${user.firstName},\n\nWelcome to our HRMS platform! Your account has been successfully created.\n\nYou can now access all employee features including:\n- View your profile and update information\n- Apply for new job positions\n- Track your applications\n- Participate in AI interviews\n\nThank you for joining us!\n\nBest regards,\nHRMS Team`,
@@ -65,10 +65,7 @@ exports.register = asyncHandler(async (req, res, next) => {
           </div>
         </div>
       `
-    });
-  } catch (err) {
-    console.error('Email send error:', err);
-  }
+  });
 
   sendTokenResponse(user, 201, res);
 });
@@ -107,10 +104,9 @@ exports.login = asyncHandler(async (req, res, next) => {
   user.lastLogin = Date.now();
   await user.save({ validateBeforeSave: false });
 
-  // Send sign-in notification email for employees
+  // Send sign-in notification email for employees (non-blocking — must not delay login)
   if (user.role.toLowerCase() === 'employee') {
-    try {
-      await sendEmail({
+    sendEmailInBackground({
         email: user.email,
         subject: 'HRMS - Successful Sign In',
         message: `Hi ${user.firstName},\n\nYou have successfully signed in to your HRMS employee account.\n\nIf this wasn't you, please contact our support team immediately.\n\nBest regards,\nHRMS Team`,
@@ -139,10 +135,7 @@ exports.login = asyncHandler(async (req, res, next) => {
             </div>
           </div>
         `
-      });
-    } catch (err) {
-      console.error('Email send error:', err);
-    }
+    });
   }
 
   sendTokenResponse(user, 200, res);
@@ -410,11 +403,9 @@ exports.googleCallback = asyncHandler(async (req, res, next) => {
   req.user.lastLogin = Date.now();
   await req.user.save({ validateBeforeSave: false });
 
-  // Send email notification based on whether this is a new user or existing user
-  try {
-    if (req.user.isNewUser) {
-      // Send welcome email for new employee registration
-      await sendEmail({
+  // Send email notification (non-blocking — must not delay OAuth redirect)
+  if (req.user.isNewUser) {
+    sendEmailInBackground({
         email: req.user.email,
         subject: 'Welcome to HRMS - Registration Successful',
         message: `Hi ${req.user.firstName},\n\nWelcome to our HRMS platform! Your employee account has been successfully created with Google OAuth.\n\nYou can now access all employee features including:\n- View your profile and update information\n- Apply for new job positions\n- Track your applications\n- Participate in AI interviews\n\nThank you for joining us!\n\nBest regards,\nHRMS Team`,
@@ -454,8 +445,7 @@ exports.googleCallback = asyncHandler(async (req, res, next) => {
         `
       });
     } else {
-      // Send sign-in notification for existing employee
-      await sendEmail({
+      sendEmailInBackground({
         email: req.user.email,
         subject: 'HRMS - Successful Sign In',
         message: `Hi ${req.user.firstName},\n\nYou have successfully signed in to your HRMS employee account using Google OAuth.\n\nIf this wasn't you, please contact our support team immediately.\n\nBest regards,\nHRMS Team`,
@@ -486,9 +476,6 @@ exports.googleCallback = asyncHandler(async (req, res, next) => {
         `
       });
     }
-  } catch (err) {
-    console.error('Email send error:', err);
-  }
 
   sendTokenResponse(req.user, 200, res, true);
 });
@@ -524,11 +511,9 @@ exports.linkedinCallback = asyncHandler(async (req, res, next) => {
   req.user.lastLogin = Date.now();
   await req.user.save({ validateBeforeSave: false });
 
-  // Send email notification based on whether this is a new user or existing user
-  try {
-    if (req.user.isNewUser) {
-      // Send welcome email for new employee registration
-      await sendEmail({
+  // Send email notification (non-blocking — must not delay OAuth redirect)
+  if (req.user.isNewUser) {
+    sendEmailInBackground({
         email: req.user.email,
         subject: 'Welcome to HRMS - Registration Successful',
         message: `Hi ${req.user.firstName},\n\nWelcome to our HRMS platform! Your employee account has been successfully created with LinkedIn OAuth.\n\nYou can now access all employee features including:\n- View your profile and update information\n- Apply for new job positions\n- Track your applications\n- Participate in AI interviews\n\nThank you for joining us!\n\nBest regards,\nHRMS Team`,
@@ -568,8 +553,7 @@ exports.linkedinCallback = asyncHandler(async (req, res, next) => {
         `
       });
     } else {
-      // Send sign-in notification for existing employee
-      await sendEmail({
+      sendEmailInBackground({
         email: req.user.email,
         subject: 'HRMS - Successful Sign In',
         message: `Hi ${req.user.firstName},\n\nYou have successfully signed in to your HRMS employee account using LinkedIn OAuth.\n\nIf this wasn't you, please contact our support team immediately.\n\nBest regards,\nHRMS Team`,
@@ -600,9 +584,6 @@ exports.linkedinCallback = asyncHandler(async (req, res, next) => {
         `
       });
     }
-  } catch (err) {
-    console.error('Email send error:', err);
-  }
 
   sendTokenResponse(req.user, 200, res, true);
 });

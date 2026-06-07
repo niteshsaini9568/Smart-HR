@@ -7,6 +7,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const os = require('os');
 const { parseResume } = require('./resumeParserService');
+const { downloadRawFileBuffer } = require('../utils/cloudinary');
 
 // Initialize embedder
 let embedder = null;
@@ -191,16 +192,14 @@ exports.analyzeApplicationAI = async (applicationId) => {
 
         // Download file from URL (Cloudinary) to temp file if available
         let filePath;
-        if (resumeDoc.fileUrl) {
-          const response = await axios({
-            method: 'get',
-            url: resumeDoc.fileUrl,
-            responseType: 'arraybuffer'
-          });
+        if (resumeDoc.cloudinaryId || resumeDoc.fileUrl) {
+          const fileBuffer = resumeDoc.cloudinaryId
+            ? await downloadRawFileBuffer(resumeDoc.cloudinaryId, resumeDoc.fileType)
+            : Buffer.from((await axios.get(resumeDoc.fileUrl, { responseType: 'arraybuffer' })).data);
 
           const tempDir = os.tmpdir();
           filePath = path.join(tempDir, resumeDoc.fileName);
-          await fs.writeFile(filePath, response.data);
+          await fs.writeFile(filePath, fileBuffer);
         } else {
           // If no fileUrl, cannot parse
           throw new Error('Resume file URL not available');
@@ -338,16 +337,14 @@ exports.matchCandidateToJob = async (application, job) => {
     if (!application.resume || !application.resume.isParsed) {
       try {
         const resumeDoc = await Resume.findById(application.resume._id);
-        if (resumeDoc && resumeDoc.fileUrl) {
-          const response = await axios({
-            method: 'get',
-            url: resumeDoc.fileUrl,
-            responseType: 'arraybuffer'
-          });
+        if (resumeDoc && (resumeDoc.cloudinaryId || resumeDoc.fileUrl)) {
+          const fileBuffer = resumeDoc.cloudinaryId
+            ? await downloadRawFileBuffer(resumeDoc.cloudinaryId, resumeDoc.fileType)
+            : Buffer.from((await axios.get(resumeDoc.fileUrl, { responseType: 'arraybuffer' })).data);
 
           const tempDir = os.tmpdir();
           const filePath = path.join(tempDir, resumeDoc.fileName);
-          await fs.writeFile(filePath, response.data);
+          await fs.writeFile(filePath, fileBuffer);
 
           const parsed = await parseResume(filePath, resumeDoc.fileType);
           await fs.unlink(filePath).catch(() => {});

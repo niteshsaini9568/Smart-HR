@@ -63,7 +63,7 @@ const kanbanStages = [
   { 
     name: 'Applied', 
     count: 24,
-    color: 'bg-gray-100',
+    color: 'bg-muted/40 border border-border',
     applications: [
       { id: 1, name: 'John Smith', position: 'Developer', score: 85 },
       { id: 2, name: 'Sarah Lee', position: 'Designer', score: 90 },
@@ -72,7 +72,7 @@ const kanbanStages = [
   { 
     name: 'Screening', 
     count: 12,
-    color: 'bg-blue-100',
+    color: 'bg-blue-500/10 border border-blue-500/20',
     applications: [
       { id: 3, name: 'Mike Johnson', position: 'Manager', score: 88 },
     ]
@@ -80,7 +80,7 @@ const kanbanStages = [
   { 
     name: 'Interview', 
     count: 8,
-    color: 'bg-purple-100',
+    color: 'bg-purple-500/10 border border-purple-500/20',
     applications: [
       { id: 4, name: 'Emma Wilson', position: 'Developer', score: 92 },
       { id: 5, name: 'Tom Brown', position: 'Analyst', score: 87 },
@@ -89,7 +89,7 @@ const kanbanStages = [
   { 
     name: 'Offer', 
     count: 5,
-    color: 'bg-green-100',
+    color: 'bg-green-500/10 border border-green-500/20',
     applications: [
       { id: 6, name: 'Lisa Chen', position: 'Designer', score: 94 },
     ]
@@ -97,7 +97,7 @@ const kanbanStages = [
   { 
     name: 'Hired', 
     count: 15,
-    color: 'bg-green-200',
+    color: 'bg-emerald-500/10 border border-emerald-500/20',
     applications: []
   },
 ];
@@ -1073,35 +1073,35 @@ export default function HRManagerDashboard({ user }) {
                 {getApplicationsByStatus().map((stage, index) => (
                   <div key={index} className={`${stage.color} p-4 rounded-lg`}>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="font-medium">{stage.name}</span>
-                      <Badge variant="secondary">{stage.count}</Badge>
+                      <span className="font-medium text-foreground">{stage.name}</span>
+                      <Badge variant="secondary" className="bg-secondary text-secondary-foreground">{stage.count}</Badge>
                     </div>
                     <div className="space-y-2">
                       {stage.applications.length > 0 ? (
                         stage.applications.map((app) => (
                           <div 
                             key={app.id} 
-                            className="bg-card p-3 rounded shadow-sm cursor-pointer hover:shadow-md transition-shadow"
+                            className="bg-card border border-border p-3 rounded-lg cursor-pointer hover:border-purple-500/30 transition-colors"
                             onClick={() => {
                               setSelectedApplicationId(app.id);
                               setIsApplicationDetailsOpen(true);
                             }}
                           >
-                            <p className="text-sm font-medium mb-1">{app.name}</p>
+                            <p className="text-sm font-medium text-foreground mb-1">{app.name}</p>
                             <p className="text-xs text-muted-foreground">{app.position}</p>
                             <div className="mt-2 flex items-center gap-1">
                               <div className="flex-1 bg-muted rounded-full h-1">
                                 <div 
-                                  className="bg-purple-600 h-1 rounded-full" 
+                                  className="bg-purple-500 h-1 rounded-full" 
                                   style={{ width: `${app.score}%` }}
                                 />
                               </div>
-                              <span className="text-xs">{app.score}</span>
+                              <span className="text-xs text-muted-foreground">{app.score}</span>
                             </div>
                           </div>
                         ))
                       ) : (
-                        <div className="bg-card/50 p-3 rounded text-center">
+                        <div className="bg-card border border-border/60 p-3 rounded-lg text-center">
                           <p className="text-xs text-muted-foreground">No applications</p>
                         </div>
                       )}

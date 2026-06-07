@@ -1,4 +1,5 @@
 const cloudinary = require('cloudinary').v2;
+const axios = require('axios');
 const ErrorResponse = require('./errorResponse');
 
 // Configure Cloudinary
@@ -134,12 +135,97 @@ const getFileInfo = async (publicId, resourceType = 'raw') => {
  * @returns {string} - Download URL with proper flags
  */
 const getDownloadUrl = (publicId) => {
-  // Use cloudinary.url() to generate proper download URL with attachment flag
   return cloudinary.url(publicId, {
     resource_type: 'raw',
     flags: 'attachment',
-    secure: true
+    secure: true,
+    sign_url: true,
+    type: 'upload',
   });
+};
+
+/**
+ * Build candidate download URLs for a raw Cloudinary asset.
+ * Signed URLs are required when the Cloudinary account restricts anonymous delivery (401).
+ */
+const getRawDownloadUrls = (publicId, format = 'pdf') => {
+  const basePublicId = publicId.replace(/\.[^/.]+$/, '');
+  const urls = [];
+
+  if (process.env.CLOUDINARY_API_SECRET) {
+    urls.push(
+      cloudinary.url(publicId, {
+        resource_type: 'raw',
+        type: 'upload',
+        sign_url: true,
+        secure: true,
+      }),
+      cloudinary.utils.private_download_url(basePublicId, format, {
+        resource_type: 'raw',
+        type: 'upload',
+        expires_at: Math.floor(Date.now() / 1000) + 3600,
+      })
+    );
+  }
+
+  urls.push(
+    cloudinary.url(publicId, {
+      resource_type: 'raw',
+      type: 'upload',
+      secure: true,
+    })
+  );
+
+  return [...new Set(urls.filter(Boolean))];
+};
+
+/**
+ * Download a raw Cloudinary file as a Buffer (for resume parsing, AI analysis, etc.)
+ */
+const downloadRawFileBuffer = async (publicId, format = 'pdf') => {
+  const urls = getRawDownloadUrls(publicId, format);
+  let lastError;
+
+  for (const url of urls) {
+    try {
+      const response = await axios.get(url, {
+        responseType: 'arraybuffer',
+        timeout: 60000,
+        validateStatus: (status) => status < 500,
+      });
+
+      if (response.status === 200 && response.data?.byteLength > 0) {
+        return Buffer.from(response.data);
+      }
+
+      lastError = new Error(`Cloudinary returned status ${response.status} for ${publicId}`);
+      console.warn(`[Cloudinary] Download attempt failed (${response.status})`, { publicId, url });
+    } catch (error) {
+      lastError = error;
+      console.warn('[Cloudinary] Download attempt error:', {
+        publicId,
+        status: error.response?.status,
+        message: error.message,
+      });
+    }
+  }
+
+  throw lastError || new Error(`Failed to download file from Cloudinary: ${publicId}`);
+};
+
+/**
+ * Replace stored fileUrl with a signed delivery URL when cloudinaryId is present.
+ */
+const withSignedFileUrl = (fileRecord) => {
+  if (!fileRecord) return fileRecord;
+
+  const record = fileRecord.toObject ? fileRecord.toObject() : { ...fileRecord };
+
+  if (record.cloudinaryId && process.env.CLOUDINARY_API_SECRET) {
+    record.fileUrl = getDownloadUrl(record.cloudinaryId);
+  }
+
+  return record;
 };
 
 module.exports = {
@@ -148,5 +234,8 @@ module.exports = {
   deleteFromCloudinary,
   uploadBufferToCloudinary,
   getFileInfo,
-  getDownloadUrl
+  getDownloadUrl,
+  getRawDownloadUrls,
+  downloadRawFileBuffer,
+  withSignedFileUrl,
 };
